@@ -34,13 +34,11 @@ def read_data(address, struct_num):
 
     return x, y
 
-train_folder = Path(
-    '/home/mk/Servers/Liuspabox/home/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/VASP_files')
+train_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/VASP_files')
 print("reading vasp files to build the training set ...")
-x_train, y_train = read_data(train_folder, 330)
+x_train, y_train = read_data(train_folder, 733)
 print("reading vasp files to build the test set ...")
-test_folder = Path(
-    '/home/mk/Servers/Liuspabox/home/Simulations/VASP/Millerite/Machine_Learning/DataSet/Test/VASP_files'
+test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Test/VASP_files'
 )
 x_test, y_test = read_data(test_folder, -1)
 
