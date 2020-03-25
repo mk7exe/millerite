@@ -2,7 +2,7 @@ import numpy as np
 import os
 import h5py
 from pathlib import Path
-import make_examples_utils as utils
+from Bond_Code import make_examples_utils as utils
 
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
