@@ -211,9 +211,9 @@ def neutralizer(atoms, cell, struct_list, file):
             trial += 1
             rm_ids = []
             i = ['']*remove_num
-            """select remove_num elements from remove_bcodes_set randomly. There are bcodes removed atoms will be
-            selected from. If we select atoms to remove directly, the choice will be biased towards bcodes with large
-            numbers"""
+            # """select remove_num elements from remove_bcodes_set randomly. There are bcodes removed atoms will be
+            # selected from. If we select atoms to remove directly, the choice will be biased towards bcodes with large
+            # numbers"""
             flag = 1
             while flag == 1:
                 flag = 0

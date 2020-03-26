@@ -5,7 +5,7 @@ import numpy as np
 
 match_number = re.compile('-?\ *[0-9]+\.?[0-9]*(?:[Ee]\ *-?\ *[0-9]+)?')
 
-# all possible undercoordinate bond codes
+# all possible undercoordinate bond codes when considering first neighbors
 UCCodes = [7, 8, 14, 20, 26, 27, 33, 34, 35, 39, 40, 41, 44, 45, 46, 47, 50, 51, 52, 87, 93, 99, 105, 108, 114, 120,
            123, 126, 129]
 
@@ -46,7 +46,7 @@ def read_poscar(filename):
                 num = [int(number) for number in line.split()]
             if counter > 8:
                 temp_xyz = [float(number) for number in line.split()]
-                if counter < num[0] + 8:
+                if counter <= num[0] + 8:
                     tempb = [0, 0, 0, 0, 0]
                 else:
                     tempb = [1, 0, 0, 0, 0]
