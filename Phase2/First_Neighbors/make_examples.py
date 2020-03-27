@@ -42,6 +42,8 @@ test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/D
 )
 x_test, y_test = read_data(test_folder, -1)
 
+print(x_train.shape, y_train.shape)
+
 h5f = h5py.File('datasets/training_dataset.h5', 'w')
 h5f.create_dataset('train_set_x', data=x_train)
 h5f.create_dataset('train_set_y', data=y_train)
