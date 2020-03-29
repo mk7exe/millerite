@@ -1,7 +1,5 @@
 import numpy as np
-import os
 import h5py
-from pathlib import Path
 
 root_path = 'datasets'
 
