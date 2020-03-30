@@ -1,7 +1,7 @@
 import numpy as np
 import h5py
 
-root_path = 'datasets'
+root_path = '../datasets'
 
 def load_data():
     train_dataset = h5py.File(root_path + '/training_dataset.h5', "r")
@@ -15,3 +15,5 @@ def load_data():
     return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig
 
 train_x_orig, train_y_orig, test_x_orig, test_y_orig = load_data()
+
+print(train_x_orig.shape, train_y_orig.shape, test_x_orig.shape, test_y_orig.shape)
