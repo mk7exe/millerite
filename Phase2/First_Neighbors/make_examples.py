@@ -27,7 +27,7 @@ def read_data(address, struct_num):
         xlist.append(code)
 
         eng = utils.read_oszicar(oszicar)
-        eng_bar = eng/nis_num - eng_NiS
+        eng_bar = eng - eng_NiS * nis_num
         ylist.append(eng_bar)
     x = np.array(xlist).T
     y = np.array(ylist)
