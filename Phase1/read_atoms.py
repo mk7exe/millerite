@@ -30,39 +30,34 @@ from collections import Counter
 
 import utils
 
-# csv file containing struct_lists of previously built structures
-struct_file = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/struct_list.csv')
-# the folder that contains xsd files
-xsd_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/xsd_folder')
 # the folder in which VASp files should be saved.
 vasp_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
 if vasp_folder.exists():
     shutil.rmtree(vasp_folder)
 os.mkdir(vasp_folder)
 
-struct_list = utils.read_struct_list(struct_file)
-
 structure_nums = []
 bcodes = set([])
 wrongs = []
 
-for folder in os.listdir(xsd_folder):
-    xsd_dir = xsd_folder / folder
-    structure_nums.append(folder)
-    for file in os.listdir(xsd_dir):
-        if file.endswith(".xsd"):
-            print("Processing ", file, "...")
-            atoms = None
-            cell = None
-            filename = xsd_folder / xsd_dir / file
-            atoms, cell = utils.read_xsd(filename)
-            atoms = utils.CN(atoms, cell)
-            old_struct_num = len(struct_list)
-            struct_list, atoms, wrongs, bcodes = utils.neutralizer(vasp_folder, atoms, cell, struct_list, file,
-                                                                   folder, wrongs, bcodes)
-            new_struct_num = len(struct_list)
-            print(new_struct_num - old_struct_num, "new structures were made...")
-            print("Current total number of structures: ", new_struct_num)
+for file in os.listdir(vasp_folder):
+
+    if file.endswith(".xsd"):
+        print("Processing ", file, "...")
+        atoms = None
+        cell = None
+        filename = xsd_folder / xsd_dir / file
+        atoms, cell = utils.read_xsd(filename)
+        atoms = utils.CN(atoms, cell)
+        old_struct_num = len(struct_list)
+        struct_list, atoms, wrongs, bcodes = utils.neutralizer(vasp_folder, atoms, cell, struct_list, file,
+                                                               folder, wrongs, bcodes)
+        new_struct_num = len(struct_list)
+        if old_struct_num != new_struct_num:
+            path = vasp_folder / str(new_struct_num) / 'atoms.json'
+            utils.write_to_json(path, atoms)
+        print(new_struct_num - old_struct_num, "new structures were made...")
+        print("Current total number of structures: ", new_struct_num)
 
 new_struct_file = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/struct_list.csv')
 utils.write_struct_list(new_struct_file, struct_list)

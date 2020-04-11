@@ -2,7 +2,7 @@ import numpy as np
 import os
 import h5py
 from pathlib import Path
-from First_Neighbors import make_examples_utils as utils
+from First_Neighbors import utils
 
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
@@ -44,7 +44,7 @@ print("reading vasp files to build the test set ...")
 # test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Test/VASP_files'
 # )
 test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Surfaces/Initial_Energy')
-x_test, y_test = read_data(test_folder, -1)
+x_test, y_test = read_data(test_folder, 1)
 print(x_test.shape, y_test.shape)
 
 # h5f = h5py.File('datasets/training_dataset.h5', 'w')
