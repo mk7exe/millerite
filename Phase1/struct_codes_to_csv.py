@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import csv
-import utils
+from Phase1 import utils
 
 def read_data(address, struct_num):
     xlist = []
@@ -25,9 +25,9 @@ def read_data(address, struct_num):
     return xlist
 
 print("reading vasp files to build the struct code file ...")
-folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/VASP_files')
+folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
 struct_list = read_data(folder, -1)
-struct_file = '/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/struct_list.csv'
+struct_file = '/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/struct_list.csv'
 
 with open(struct_file, "w", newline="") as f:
     writer = csv.writer(f)

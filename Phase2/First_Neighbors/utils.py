@@ -43,6 +43,12 @@ def read_struct_list(filename):
     return list_int
 
 
+def write_struct_list(filename, code):
+    with open(filename, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(code)
+
+
 def write_to_csv(filename, code):
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
@@ -89,7 +95,7 @@ def read_poscar(filename):
     return atoms, cell
 
 
-def write_poscar(vasp_folder, filename, name, num, atoms, cell, neut_code):
+def write_poscar(vasp_folder, filename, name, num, atoms, cell, struct_type):
     """function to write VASP POSCAR file for a configuration"""
     atoms.sort(key=lambda x: x[2][0])  # Sort to write Ni atoms first
     directory = vasp_folder / str(name)
@@ -108,10 +114,10 @@ def write_poscar(vasp_folder, filename, name, num, atoms, cell, neut_code):
         f.write("Direct\n")
         for a in atoms:
             f.write("%16.9f%16.9f%16.9f\n" % (a[1][0], a[1][1], a[1][2]))
-    file = directory / 'STRUCT_CODE'
+
+    file = directory / struct_type
     with open(file, "w") as f:
-        for item in neut_code:
-            f.write("%d\n" % item)
+        f.write(struct_type)
 
 
 def read_xsd(filename):
@@ -193,6 +199,7 @@ def duplicate(one_code):
 
 def CN(atoms, h):
     """calculates b = [type, b1, b2, b3, b4] for each atom in atoms"""
+    # image_vector = np.array([p for p in itertools.product([-1, 0, 1], repeat=3)])
     # lower and higher limit of bond length in Millerite unitcell to find bond types of ions
     MilBonds = [2.255, 2.3]
 
@@ -211,8 +218,12 @@ def CN(atoms, h):
             rij = np.matmul(sij, h)  # converting to cartesian coordinates
             rij_norm = np.linalg.norm(rij)  # length of distance vector
             if rij_norm < 2.55:  # if bonded atoms are same type, it is b4!
-                atoms[i][4].append(j)
-                atoms[j][4].append(i)
+                set1 = set(atoms[i][4])
+                set2 = set(atoms[j][4])
+                set1.add(j)
+                set2.add(i)
+                atoms[i][4] = list(set1)
+                atoms[j][4] = list(set2)
                 if atoms[i][2][0] == atoms[j][2][0]:
                     atoms[i][2][4] += 1
                     atoms[j][2][4] += 1
@@ -230,7 +241,7 @@ def CN(atoms, h):
     return atoms
 
 
-def neutralizer(vasp_folder, atoms, cell, struct_list, file):
+def neutralizer(vasp_folder, atoms, cell, struct_list, file, struct_type, wrongs, bcodes):
     struct_num = 0
     max_trials = 1000 # number of trials
     max_structures = 50  # number of trials
@@ -293,20 +304,40 @@ def neutralizer(vasp_folder, atoms, cell, struct_list, file):
             if any(elem == neut_code for elem in struct_list) or zero_bond:
                 pass
             else:
+                flag = 0
+                for id, atom in enumerate(neut_atoms):
+                    bcodes.add(atom[3])
+                    if (any(x > 2 for x in atom[2]) or atom[2][1] > 1) and flag == 0:
+                        wrongs.append([file, len(struct_list), struct_type])
+                        flag = 1
+                        break
                 struct_list.append(neut_code)
                 struct_num += 1
-                write_poscar(vasp_folder, file, len(struct_list), struct_num, neut_atoms, cell, neut_code)
+                write_poscar(vasp_folder, file, len(struct_list), struct_num, neut_atoms, cell, struct_type)
                 structures += 1
+                path = vasp_folder / str(len(struct_list)) / 'atoms.json'
+                write_to_json(path, neut_atoms)
     else:
         neut_code = struc_code(atoms)
+        neut_atoms = atoms
+        flag = 0
+        for id, atom in enumerate(neut_atoms):
+            bcodes.add(atom[3])
+            if (any(x > 2 for x in atom[2]) or atom[2][1] > 1) and flag == 0:
+                wrongs.append([file, len(struct_list), struct_type])
+                flag = 1
+                break
         if any(elem == neut_code for elem in struct_list):
             pass
         else:
             struct_list.append(neut_code)
             struct_num += 1
             #print(struct_num, ": ", neut_code)
-            write_poscar(vasp_folder, file, len(struct_list), struct_num, atoms, cell, neut_code)
-    return struct_list
+            write_poscar(vasp_folder, file, len(struct_list), struct_num, neut_atoms, cell, struct_type)
+            path = vasp_folder / str(len(struct_list)) / 'atoms.json'
+            write_to_json(path, neut_atoms)
+
+    return struct_list, neut_atoms, wrongs, bcodes
 
 
 def steinhardt(atoms, h, rmax, orders):

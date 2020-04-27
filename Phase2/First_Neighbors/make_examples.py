@@ -2,7 +2,7 @@ import numpy as np
 import os
 import h5py
 from pathlib import Path
-from First_Neighbors import utils
+from Phase2.First_Neighbors import utils
 
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
