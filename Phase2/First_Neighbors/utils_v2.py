@@ -1,5 +1,5 @@
 import csv
-
+import json
 
 def read_csv(filename):
     with open(filename, 'r') as read_obj:
@@ -18,3 +18,17 @@ def read_struct_type(filename):
             temp = line.split()
             content.append(int(temp[1]))
     return content
+
+
+def read_atom_num(filename):
+    # with open(filename) as f:
+    #     atoms = json.load(f)
+    # num = len(atoms)
+    counter = 0
+    with open(filename) as f:
+        for line in f:
+            counter += 1
+            if counter == 7:
+                num = [int(number) for number in line.split()]
+                break
+    return num[0]
