@@ -17,7 +17,7 @@ def read_data(address, struct_num):
             print("number of structures read: %d" % counter, end="\n")
         if counter > struct_num and struct_num > 0:
             break
-        print("Structure ", counter, " is ", dir)
+        # print("Structure ", counter, " is ", dir)
         poscar = address / dir / "POSCAR"
         oszicar = address / dir / "OSZICAR"
 
@@ -25,11 +25,15 @@ def read_data(address, struct_num):
         atoms = utils.CN(atoms, cell)
         nis_num = len(atoms)/2
         code = utils.struc_code(atoms)
-        xlist.append(code)
 
+        xlist.append(code)
         eng = utils.read_oszicar(oszicar)
         eng_bar = eng - eng_NiS * nis_num
         ylist.append(eng_bar)
+
+        xsum = np.sum(code)
+        y_temp = np.divide(eng_bar, xsum)
+
     x = np.array(xlist).T
     y = np.array(ylist)
 
@@ -44,7 +48,7 @@ print("reading vasp files to build the test set ...")
 # test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Test/VASP_files'
 # )
 test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Surfaces/Initial_Energy')
-x_test, y_test = read_data(test_folder, 1)
+x_test, y_test = read_data(test_folder, -1)
 print(x_test.shape, y_test.shape)
 
 # h5f = h5py.File('datasets/training_dataset.h5', 'w')
@@ -52,7 +56,7 @@ print(x_test.shape, y_test.shape)
 # h5f.create_dataset('train_set_y', data=y_train)
 # h5f.close()
 
-h5f = h5py.File('datasets/test_dataset.h5', 'w')
-h5f.create_dataset('test_set_x', data=x_test)
-h5f.create_dataset('test_set_y', data=y_test)
-h5f.close()
+# h5f = h5py.File('/home/khalkhal/millerite_datasets/temp.h5', 'w')
+# h5f.create_dataset('test_set_x', data=x_test)
+# h5f.create_dataset('test_set_y', data=y_test)
+# h5f.close()

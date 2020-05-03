@@ -176,9 +176,9 @@ def struc_code(atoms):
             index = -1
         if index >= 0:
             code[index] = bnums[j]
-    temp_b = [x for x in code if x]
-    gcd = np.gcd.reduce(temp_b)
-    code = [int(x/gcd) for x in code]
+    # temp_b = [x for x in code if x]
+    # gcd = np.gcd.reduce(temp_b)
+    # code = [int(x/gcd) for x in code]
     return list(code)
 
 

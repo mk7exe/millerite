@@ -48,10 +48,10 @@ with open(eng_file_2, 'r') as f:
         eng = float(temp[5])
         poscar = sim_folder_new / "VASP_folder" / str(id) / "POSCAR"
         num = read_atom_num(poscar)
-        atom_num = sim_folder_new / "atom_nums.dat"
-        with open(atom_num, 'a') as f1:
-            f1.write(str(num))
-            f1.write("\n")
+        # atom_num = sim_folder_new / "atom_nums.dat"
+        # with open(atom_num, 'a') as f1:
+        #     f1.write(str(num))
+        #     f1.write("\n")
         eng_bar = eng - eng_NiS * num
 
         x.append(struct_list[id-1])
