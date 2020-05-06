@@ -13,16 +13,17 @@ UCCodes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
 
 bs = [26, 44, 35, 50, 45, 52, 51, 105, 123, 114, 129, 126]
 names = ['Ni-1b1','Ni-1b2', 'Ni-2b2', 'Ni-1b3', 'Ni-2b3', 'Ni-1b4', 'Ni-2b4', 'S-1b1', 'S-1b2', 'S-2b2', 'S-1b3',
-         'S-2b2']
+         'S-2b3']
 
 bcodes = []
-for j in range(len(bs)):
+for b in bs:
     code = [0] * len(UCCodes)
-    index = UCCodes.index(bs[j])
+    index = UCCodes.index(b)
     code[index] = 1
     bcodes.append(code)
 
 dic = dict(zip(names, bcodes))
+print(len(names), len(bs), len(bcodes), len(dic))
 
 file = dataset_folder / "single_bonds.json"
 with open(file, 'w') as fp:
