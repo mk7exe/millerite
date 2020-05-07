@@ -341,8 +341,8 @@ def neutralizer(vasp_folder, atoms, cell, struct_list, file, struct_type, wrongs
 
 
 def steinhardt(atoms, h, rmax, orders):
+    max_order = max(orders)
     for i in range(len(atoms)):
-        max_order = max(orders)
         ybar = np.zeros((2*max_order + 1, len(orders)), dtype=np.cdouble)
         nnn = 0
         si = np.asarray(atoms[i][1])
@@ -357,7 +357,7 @@ def steinhardt(atoms, h, rmax, orders):
                 theta = np.arctan2(rij[1], rij[0])
                 theta = np.mod(theta, 2*np.pi)
                 phi = np.arctan2(np.sqrt(rij[0]*rij[0]+rij[1]*rij[1]), rij[2])
-
+                # print(theta, phi)
                 counter = 0
                 for order in orders:
                     for k in range(2*order + 1):
@@ -365,9 +365,9 @@ def steinhardt(atoms, h, rmax, orders):
                         m = k - order
                         ybar[k, counter] += special.sph_harm(m, l, theta, phi)
                     counter += 1
-        np.divide(ybar, nnn, out=np.zeros_like(ybar), where=nnn != 0)
+        ybar = np.divide(ybar, nnn, out=np.zeros_like(ybar), where=nnn != 0)
         for k in range(len(orders)):
             ybar_square = np.square(np.absolute(ybar[:, k]))
-            q = np.sqrt((4*np.pi/(2*order + 1)) * np.sum(ybar_square))
-            atoms[i].append(np.around(q, decimals=4))
+            q = np.sqrt((4*np.pi/(2*orders[k] + 1)) * np.sum(ybar_square))
+            atoms[i][4].append(np.around(q, decimals=3))
     return atoms

@@ -3,7 +3,6 @@ import os
 import h5py
 import json
 from pathlib import Path
-from First_Neighbors import utils
 
 from collections import Counter
 import matplotlib.pyplot as plt
