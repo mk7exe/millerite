@@ -409,6 +409,7 @@ def frac2cart(cellParam, i):
 
 def write_lammps(address, atoms, h):
     lmp_file = address / 'lmp.data'
+    print(h)
     # converting cell vectors
     a = h[0]
     b = h[1]
@@ -420,6 +421,8 @@ def write_lammps(address, atoms, h):
     cy = np.divide(np.dot(b, c) - bx * cx, by)
     cz = np.sqrt(np.square(np.linalg.norm(c)) - np.square(np.linalg.norm(cx)) - np.square(np.linalg.norm(cy)))
 
+    lmp_h = np.array([[ax, 0, 0], [bx, by, 0], [cx, cy, cz]])
+
     with open(lmp_file, 'w') as f:
         f.write('lammps data file made by write_lammps function in millerite project\n')
         f.write('\n')
@@ -430,7 +433,7 @@ def write_lammps(address, atoms, h):
         f.write('%10.8f %10.8f  xlo xhi\n' % (0.0, ax))
         f.write('%10.8f %10.8f  ylo yhi\n' % (0.0, by))
         f.write('%10.8f %10.8f  zlo zhi\n' % (0.0, cz))
-        if bx != 0.0 or cx != 0.0 or cy != 0.0:
+        if np.around(bx, decimals=6) != 0.0 or np.around(cx, decimals=6) != 0.0 or np.around(cy, decimals=6) != 0.0:
             f.write('%10.8f %10.8f %10.8f xy xz yz\n' % (bx, cx, cy))
         f.write('\n')
         f.write('  Masses\n')
@@ -441,5 +444,5 @@ def write_lammps(address, atoms, h):
         f.write('Atoms # full\n')
         f.write('\n')
         for i, atom in enumerate(atoms):
-            x, y, z = frac2cart(h, atom[1])
+            [x, y, z] = np.dot(lmp_h.T, atom[1])
             f.write('%7d %5d %5d %10.6f %10.6f %10.6f %10.6f\n' % (i+1, 1, atom[2][0]+1, 0.0, x, y, z))
