@@ -442,4 +442,4 @@ def write_lammps(address, atoms, h):
         f.write('\n')
         for i, atom in enumerate(atoms):
             x, y, z = frac2cart(h, atom[1])
-            f.write('%7d %5d %5d %10.6f %10.6f %10.6f\n' % (i+1, 1, atom[2][0]+1, x, y, z))
+            f.write('%7d %5d %5d %10.6f %10.6f %10.6f %10.6f\n' % (i+1, 1, atom[2][0]+1, 0.0, x, y, z))
