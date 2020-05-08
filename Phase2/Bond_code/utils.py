@@ -89,10 +89,37 @@ def read_poscar(filename):
                     tempb = [0, 0, 0, 0, 0]
                 else:
                     tempb = [1, 0, 0, 0, 0]
-                atoms.append([counter - 8, temp_xyz, tempb, 0, []])
+                atoms.append([counter - 8, temp_xyz, tempb, 0, [], []])
     cell = np.asarray([a, b, c])
 
     return atoms, cell
+
+
+def write_poscar_v2(address, atoms, cell, constraint):
+    """function to write VASP POSCAR file for a configuration"""
+    atoms.sort(key=lambda x: x[2][0])  # Sort to write Ni atoms first
+    file = address / 'POSCAR'
+    with open(file, "w") as f:
+        f.write("Structure made with write_poscar_v2\n")
+        f.write("1.0\n")
+        f.write("%20.10f%20.10f%20.10f\n" % (cell[0][0], cell[0][1], cell[0][2]))
+        f.write("%20.10f%20.10f%20.10f\n" % (cell[1][0], cell[1][1], cell[1][2]))
+        f.write("%20.10f%20.10f%20.10f\n" % (cell[2][0], cell[2][1], cell[2][2]))
+        Ni_num = sum(x[2][0] == 0 for x in atoms)
+        S_num = len(atoms) - Ni_num
+        f.write("   Ni    S\n")
+        f.write("%5i%5i\n" % (Ni_num, S_num))
+        if constraint:
+            f.write("Selective Dynamics\n")
+        f.write("Direct\n")
+        for a in atoms:
+            if constraint:
+                if a[3] != 132 and a[3] != 53:
+                    f.write("%16.9f%16.9f%16.9f T T T\n" % (a[1][0], a[1][1], a[1][2]))
+                else:
+                    f.write("%16.9f%16.9f%16.9f F F F\n" % (a[1][0], a[1][1], a[1][2]))
+            else:
+                f.write("%16.9f%16.9f%16.9f\n" % (a[1][0], a[1][1], a[1][2]))
 
 
 def write_poscar(vasp_folder, filename, name, num, atoms, cell, struct_type):
@@ -147,7 +174,7 @@ def read_xsd(filename):
                             else:
                                 temp_type = 1
                             tempb = [temp_type, 0, 0, 0, 0]
-                    atoms.append([temp_id, temp_xyz, tempb, 0, []])
+                    atoms.append([temp_id, temp_xyz, tempb, 0, [], []])
                 elif line.startswith('<SpaceGroup'):
                     for item in temp:
                         if item.startswith('AVector'):
@@ -201,7 +228,7 @@ def CN(atoms, h):
     """calculates b = [type, b1, b2, b3, b4] for each atom in atoms"""
     # image_vector = np.array([p for p in itertools.product([-1, 0, 1], repeat=3)])
     # lower and higher limit of bond length in Millerite unitcell to find bond types of ions
-    MilBonds = [2.255, 2.3]
+    MilBonds = [2.255, 2.3, 2.55]
 
     for i in range(len(atoms)):
         atoms[i][2][1] = 0
@@ -217,7 +244,7 @@ def CN(atoms, h):
             sij = si - sj - np.rint(si - sj)
             rij = np.matmul(sij, h)  # converting to cartesian coordinates
             rij_norm = np.linalg.norm(rij)  # length of distance vector
-            if rij_norm < 2.55:  # if bonded atoms are same type, it is b4!
+            if rij_norm < MilBonds[2]:  # if bonded atoms are same type, it is b4!
                 set1 = set(atoms[i][4])
                 set2 = set(atoms[j][4])
                 set1.add(j)
@@ -369,5 +396,5 @@ def steinhardt(atoms, h, rmax, orders):
         for k in range(len(orders)):
             ybar_square = np.square(np.absolute(ybar[:, k]))
             q = np.sqrt((4*np.pi/(2*orders[k] + 1)) * np.sum(ybar_square))
-            atoms[i][4].append(np.around(q, decimals=3))
+            atoms[i][5].append(np.around(q, decimals=3))
     return atoms

@@ -5,7 +5,7 @@ datasets are built by reading POSCAR and OZICARS directly.
 
 import h5py
 from pathlib import Path
-from Phase2.First_Neighbors.utils_v2 import *
+from Phase2.Bond_code.utils_v2 import *
 
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
