@@ -190,7 +190,7 @@ def read_xsd(filename):
 def struc_code(atoms):
     """function returns a list for an structure including number of each types in UCCodes"""
     all_bcodes = []
-    code = [0]*len(UCCodes)
+    code = [0] * len(UCCodes)
     for at in atoms:
         if at[3] != 132 and at[3] != 53:
             all_bcodes.append(at[3])
@@ -210,8 +210,8 @@ def struc_code(atoms):
 
 
 def struc_one_code(struct_code):
-    new_list = [x+1 for x in struct_code]
-    one_code = ''.join(map(str,new_list))
+    new_list = [x + 1 for x in struct_code]
+    one_code = ''.join(map(str, new_list))
     return one_code
 
 
@@ -270,40 +270,40 @@ def CN(atoms, h):
 
 def neutralizer(vasp_folder, atoms, cell, struct_list, file, struct_type, wrongs, bcodes):
     struct_num = 0
-    max_trials = 1000 # number of trials
+    max_trials = 1000  # number of trials
     max_structures = 50  # number of trials
     Num = [0, 0]  # number of Ni and S in structure
     remove_ids = []  # id of all undercoordinated atoms of type_to_remove
-    remove_bcodes = [] # bcodes of all uandercoordinated atoms of type_to_remove
+    remove_bcodes = []  # bcodes of all uandercoordinated atoms of type_to_remove
     Num[1] = sum(at[2][0] for at in atoms)  # S ids are 1
     Num[0] = len(atoms) - Num[1]
     remove_num = np.abs(Num[1] - Num[0])  # number of atoms to be remove to retain charge neutrality
 
     if remove_num != 0:
         if Num[1] > Num[0]:
-            type_to_remove = 1 # S should be removed
+            type_to_remove = 1  # S should be removed
             print(remove_num, "S atoms will be removed from", end=" ")
         else:
-            type_to_remove = 0 # Ni should be removed
+            type_to_remove = 0  # Ni should be removed
             print(remove_num, "Ni atoms will be removed from", end=" ")
         i = 0
         for at in atoms:
             if at[2][0] == type_to_remove and at[3] != 132 and at[3] != 53:
-                remove_ids.append([at[0], at[3]]) # all undercoordinate atom of type_to_remove are candidates
-                remove_bcodes.append(at[3]) # store their bcodes
+                remove_ids.append([at[0], at[3]])  # all undercoordinate atom of type_to_remove are candidates
+                remove_bcodes.append(at[3])  # store their bcodes
                 i += 1
         print(i, "undercoordinated atoms")
-        remove_bcodes_set = list(set(remove_bcodes)) # unique bcodes in removal candidates
-        remove_ids_sorted = sorted(remove_ids, key = lambda x: x[1])
+        remove_bcodes_set = list(set(remove_bcodes))  # unique bcodes in removal candidates
+        remove_ids_sorted = sorted(remove_ids, key=lambda x: x[1])
         # removed ids are grouped according to their bcodes
         remove_ids_grouped = [[key, [g[0] for g in group]] for key, group in itertools.groupby(remove_ids_sorted,
-                                                                                                lambda x: x[1])]
+                                                                                               lambda x: x[1])]
         structures = 1
         trial = 0
         while trial <= max_trials and structures <= max_structures:
             trial += 1
             rm_ids = []
-            i = ['']*remove_num
+            i = [''] * remove_num
             # """select remove_num elements from remove_bcodes_set randomly. There are bcodes removed atoms will be
             # selected from. If we select atoms to remove directly, the choice will be biased towards bcodes with large
             # numbers"""
@@ -359,7 +359,7 @@ def neutralizer(vasp_folder, atoms, cell, struct_list, file, struct_type, wrongs
         else:
             struct_list.append(neut_code)
             struct_num += 1
-            #print(struct_num, ": ", neut_code)
+            # print(struct_num, ": ", neut_code)
             write_poscar(vasp_folder, file, len(struct_list), struct_num, neut_atoms, cell, struct_type)
             path = vasp_folder / str(len(struct_list)) / 'atoms.json'
             write_to_json(path, neut_atoms)
@@ -370,7 +370,7 @@ def neutralizer(vasp_folder, atoms, cell, struct_list, file, struct_type, wrongs
 def steinhardt(atoms, h, rmax, orders):
     max_order = max(orders)
     for i in range(len(atoms)):
-        ybar = np.zeros((2*max_order + 1, len(orders)), dtype=np.cdouble)
+        ybar = np.zeros((2 * max_order + 1, len(orders)), dtype=np.cdouble)
         nnn = 0
         si = np.asarray(atoms[i][1])
         for j in range(len(atoms)):
@@ -382,12 +382,12 @@ def steinhardt(atoms, h, rmax, orders):
             if rij_norm < rmax and i != j:
                 nnn += 1
                 theta = np.arctan2(rij[1], rij[0])
-                theta = np.mod(theta, 2*np.pi)
-                phi = np.arctan2(np.sqrt(rij[0]*rij[0]+rij[1]*rij[1]), rij[2])
+                theta = np.mod(theta, 2 * np.pi)
+                phi = np.arctan2(np.sqrt(rij[0] * rij[0] + rij[1] * rij[1]), rij[2])
                 # print(theta, phi)
                 counter = 0
                 for order in orders:
-                    for k in range(2*order + 1):
+                    for k in range(2 * order + 1):
                         l = order
                         m = k - order
                         ybar[k, counter] += special.sph_harm(m, l, theta, phi)
@@ -395,6 +395,51 @@ def steinhardt(atoms, h, rmax, orders):
         ybar = np.divide(ybar, nnn, out=np.zeros_like(ybar), where=nnn != 0)
         for k in range(len(orders)):
             ybar_square = np.square(np.absolute(ybar[:, k]))
-            q = np.sqrt((4*np.pi/(2*orders[k] + 1)) * np.sum(ybar_square))
+            q = np.sqrt((4 * np.pi / (2 * orders[k] + 1)) * np.sum(ybar_square))
             atoms[i][5].append(np.around(q, decimals=3))
     return atoms
+
+
+def frac2cart(cellParam, i):
+    x = i[0] * cellParam[0][0] + i[1] * cellParam[1][0] + i[2] * cellParam[2][0]
+    y = i[0] * cellParam[0][1] + i[1] * cellParam[1][1] + i[2] * cellParam[2][1]
+    z = i[0] * cellParam[0][2] + i[1] * cellParam[1][2] + i[2] * cellParam[2][2]
+    return x, y, z
+
+
+def write_lammps(address, atoms, h):
+    lmp_file = address / 'lmp.data'
+    # converting cell vectors
+    a = h[0]
+    b = h[1]
+    c = h[2]
+    ax = np.linalg.norm(a)
+    bx = np.dot(b, a) / ax
+    by = np.sqrt(np.linalg.norm(b) * np.linalg.norm(b) - bx * bx)
+    cx = np.dot(c, a) / ax
+    cy = np.divide(np.dot(b, c) - bx * cx, by)
+    cz = np.sqrt(np.square(np.linalg.norm(c)) - np.square(np.linalg.norm(cx)) - np.square(np.linalg.norm(cy)))
+
+    with open(lmp_file, 'w') as f:
+        f.write('lammps data file made by write_lammps function in millerite project\n')
+        f.write('\n')
+        f.write('  %d atoms\n' % (len(atoms)))
+        f.write('\n')
+        f.write('  2 atom types\n')
+        f.write('\n')
+        f.write('%10.8f %10.8f  xlo xhi\n' % (0.0, ax))
+        f.write('%10.8f %10.8f  ylo yhi\n' % (0.0, by))
+        f.write('%10.8f %10.8f  zlo zhi\n' % (0.0, cz))
+        if bx != 0.0 or cx != 0.0 or cy != 0.0:
+            f.write('%10.8f %10.8f %10.8f xy xz yz\n' % (bx, cx, cy))
+        f.write('\n')
+        f.write('  Masses\n')
+        f.write('\n')
+        f.write('  1  58.6934\n')
+        f.write('  2  32.0650\n')
+        f.write('\n')
+        f.write('Atoms # full\n')
+        f.write('\n')
+        for i, atom in enumerate(atoms):
+            x, y, z = frac2cart(h, atom[1])
+            f.write('%7d %5d %5d %10.6f %10.6f %10.6f\n' % (i+1, 1, atom[2][0]+1, x, y, z))
