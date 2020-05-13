@@ -43,11 +43,13 @@ with open(eng_file, 'r') as f:
         with open(atom_file) as f:
             atoms = json.load(f)  # atoms have already saved in atoms.json
         atom_num = len(atoms)
-        ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
-        uc_num = len(ids)
+        # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
+        # uc_num = len(ids)
         # we are only interested in order parameters of atoms on (or near) surface
-        q4 = [atoms[i][5][0] for i in ids]
-        q6 = [atoms[i][5][1] for i in ids]
+        # q4 = [atoms[i][5][0] for i in ids]
+        # q6 = [atoms[i][5][1] for i in ids]
+        q4 = [x[5][0] for x in atoms]
+        q6 = [x[5][1] for x in atoms]
         # calculate the 2D histogram
         H, xedges, yedges = np.histogram2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]])
         H = H.T  # normalizing the mesh to the total number of atoms
@@ -79,11 +81,13 @@ for dir_path in os.listdir(address):
             with open(atom_file) as f:
                 atoms = json.load(f) # atoms have already saved in atoms.json
             atom_num = len(atoms)
-            ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132] # find surface atoms
-            uc_num = len(ids)
+            # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
+            # uc_num = len(ids)
             # we are only interested in order parameters of atoms on (or near) surface
-            q4 = [atoms[i][5][0] for i in ids]
-            q6 = [atoms[i][5][1] for i in ids]
+            # q4 = [atoms[i][5][0] for i in ids]
+            # q6 = [atoms[i][5][1] for i in ids]
+            q4 = [x[5][0] for x in atoms]
+            q6 = [x[5][1] for x in atoms]
             # calculate the 2D histogram
             H, xedges, yedges = np.histogram2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]])
             H = H.T # normalizing the mesh to the total number of atoms
@@ -110,10 +114,13 @@ for dir_path in os.listdir(address):
             with open(atom_file) as f:
                 atoms = json.load(f)
             atom_num = len(atoms)
-            ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]
-            uc_num = len(ids)
-            q4 = [atoms[i][5][0] for i in ids]
-            q6 = [atoms[i][5][1] for i in ids]
+            # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
+            # uc_num = len(ids)
+            # we are only interested in order parameters of atoms on (or near) surface
+            # q4 = [atoms[i][5][0] for i in ids]
+            # q6 = [atoms[i][5][1] for i in ids]
+            q4 = [x[5][0] for x in atoms]
+            q6 = [x[5][1] for x in atoms]
             H, xedges, yedges = np.histogram2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]])
             H = H.T
             # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
