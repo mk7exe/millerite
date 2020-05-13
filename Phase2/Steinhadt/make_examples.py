@@ -130,10 +130,12 @@ h5f.create_dataset('x', data=xslab)
 h5f.create_dataset('y', data=yslab)
 h5f.close()
 
-os.system(' zip -r datasets/data.zip datasets')
+if os.path.isfile('datasets/data.zip'):
+    os.system('rm datasets/data.zip')
+os.system('zip -r datasets/data.zip datasets')
 os.system('rm datasets/training_2D.h5')
 os.system('rm datasets/slab_2D.h5')
-
+os.system('rm datasets/surface_2D.h5')
 # dataset_num = int(y.shape[0]/1000)
 # for i in range(dataset_num):
 #     h5f = h5py.File(database_folder+'/training_2D_'+str(i+1)+'.h5', 'w')
