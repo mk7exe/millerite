@@ -52,6 +52,10 @@ for dir_path in os.listdir(address):
 x = np.array(xlist)
 y = np.array(ylist)
 
+print(x.shape)
+print(y.shape)
+print(np.max(x))
+
 h5f = h5py.File('datasets/surface_2D.h5', 'w')
 h5f.create_dataset('x', data=x)
 h5f.create_dataset('y', data=y)
