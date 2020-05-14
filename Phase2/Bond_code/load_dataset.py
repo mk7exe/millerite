@@ -1,7 +1,11 @@
 import numpy as np
 import h5py
 
+<<<<<<< HEAD
 root_path = '../datasets'
+=======
+root_path = 'datasets'
+>>>>>>> origin/master
 
 def load_data():
     train_dataset = h5py.File(root_path + '/training_dataset.h5', "r")

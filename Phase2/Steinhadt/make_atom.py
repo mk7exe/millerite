@@ -8,7 +8,8 @@ import os
 from pathlib import Path
 from Phase2.Bond_code import utils
 
-address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
+# address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
+address = Path("/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training/VASP_files")
 
 for dir in os.listdir(address):
     print(dir)

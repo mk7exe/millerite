@@ -65,14 +65,41 @@ def read_oszicar(filename):
         for line in f:
             pass
     temp = line.split(" ")
-    eng = float(temp[5])
+    if (temp[4] == 'F='):
+        eng = float(temp[5])
+    else:
+        eng = 0.0
     return eng
+
+
+def det3(mat):
+  return ((mat[0][0]*mat[1][1]*mat[2][2]) + (mat[0][1]*mat[1][2]*mat[2][0]) + (mat[0][2]*mat[1][0]*mat[2][1]) - (mat[0][2]*mat[1][1]*mat[2][0]) - (mat[0][1]*mat[1][0]*mat[2][2]) - (mat[0][0]*mat[1][2]*mat[2][1]))
+
+
+def cart2frac(a, b, c, coord):
+    cellParam = [a, b, c]
+    latCnt = [x[:] for x in [[None]*3]*3]
+    for i in range(3):
+        for j in range(3):
+            latCnt[i][j] = cellParam[j][i]
+    detLatCnt = det3(latCnt)
+    x = (det3([[coord[0], latCnt[0][1], latCnt[0][2]],
+               [coord[1], latCnt[1][1], latCnt[1][2]],
+               [coord[2], latCnt[2][1], latCnt[2][2]]])) / detLatCnt
+    y = (det3([[latCnt[0][0], coord[0], latCnt[0][2]],
+               [latCnt[1][0], coord[1], latCnt[1][2]],
+               [latCnt[2][0], coord[2], latCnt[2][2]]])) / detLatCnt
+    z = (det3([[latCnt[0][0], latCnt[0][1], coord[0]],
+               [latCnt[1][0], latCnt[1][1], coord[1]],
+               [latCnt[2][0], latCnt[2][1], coord[2]]])) / detLatCnt
+    return [x, y, z]
 
 
 def read_poscar(filename):
     atoms = []
     counter = 0
     with open(filename) as f:
+        cart = False
         for line in f:
             counter += 1
             if counter == 3:
@@ -83,8 +110,12 @@ def read_poscar(filename):
                 c = [float(number) for number in line.split()]
             if counter == 7:
                 num = [int(number) for number in line.split()]
+            if counter == 8 and line[0:9] == 'Cartesian':
+                cart = True
             if counter > 8:
                 temp_xyz = [float(number) for number in line.split()]
+                if cart:
+                    temp_xyz = cart2frac(a, b, c, temp_xyz)
                 if counter <= num[0] + 8:
                     tempb = [0, 0, 0, 0, 0]
                 else:
@@ -409,7 +440,6 @@ def frac2cart(cellParam, i):
 
 def write_lammps(address, atoms, h):
     lmp_file = address / 'lmp.data'
-    print(h)
     # converting cell vectors
     a = h[0]
     b = h[1]
