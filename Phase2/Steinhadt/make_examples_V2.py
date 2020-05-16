@@ -4,6 +4,10 @@ difference between the structure and bulk with teh same number of atoms. The exc
 atoms, so it is normalized by the number of the undercoordinated atoms. The structure identifier (x) is a 100x100
 matrix. x and y axes of the matrix represent 100-bin histograms of q4 and q6 parameters restricted between 0.1 and 0.8.
 Each cell represents the number of atoms having steinhardt parameters in the corresponding range.
+
+In this version, training set is made of all non slab configurations and some slab configurations to make the
+total size of the training set 70% of the total number of examples. Dev and test sets are entirely made of
+slab configurations.
 '''
 
 import numpy as np
@@ -13,6 +17,8 @@ import h5py
 from pathlib import Path
 import matplotlib.pyplot as plt
 from Phase2.Bond_code import utils
+import Phase2.Steinhadt.surface_example_maker
+
 
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
@@ -44,8 +50,8 @@ struct_num = -1
 
 print("reading vasp files to build the training set ...")
 counter = 0
-xlist = []
-ylist = []
+xlist_cluster = []
+ylist_cluster = []
 xlist_slab = []
 ylist_slab = []
 # reading the old simulations. Vasp files were removed but energies can be written from energy.dat file. POSCAR files
@@ -57,21 +63,18 @@ with open(eng_file, 'r') as f:
         id = int(temp[0])
         if counter % 10 == 0:
             print("Structure %s" % str(id), end="\n")
-        if counter > struct_num > 0:
-            break
         atom_file = sim_folder_old / "VASP_files" / str(id) / "atoms.json"
         with open(atom_file) as f:
             atoms = json.load(f)  # atoms have already saved in atoms.json
         x, y = sinle_example(atoms, temp[5])
-        xlist.append(x)
-        ylist.append(y)
+        xlist_cluster.append(x)
+        ylist_cluster.append(y)
 
 # reading new simulations. These simulations also have geometry optimized version saved in GEOM_OPT folder.
 address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
 for dir_path in os.listdir(address):
-    counter += 1
-    # if counter % 10 == 0:
-    #     print("Structure %s" % dir_path, end="\n")
+    if counter % 10 == 0:
+        print("Structure %s" % dir_path, end="\n")
     if counter > struct_num > 0:
         break
     # first read the unrelaxed structure
@@ -79,91 +82,95 @@ for dir_path in os.listdir(address):
     if os.path.isfile(oszicar):
         eng = utils.read_oszicar(oszicar) # red energy from oszicar. eng = 0.0 if simulation is not finished
         if eng != 0.0: # deal with the simulation onle if it is finished
-            print("Initial %s" % dir_path, end="\n")
+            counter += 1
+            # print("Initial %s" % dir_path, end="\n")
             atom_file = address / dir_path / "atoms.json"
             with open(atom_file) as f:
                 atoms = json.load(f) # atoms have already saved in atoms.json
             x, y = sinle_example(atoms, eng)
-            xlist.append(x)
-            ylist.append(y)
 
             slabs = address / dir_path / "slabs"
             if os.path.isfile(slabs):
                 xlist_slab.append(x)
                 ylist_slab.append(y)
+            else:
+                xlist_cluster.append(x)
+                ylist_cluster.append(y)
 
     # now read the optimzed structure
     oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
     if os.path.isfile(oszicar):
         eng = utils.read_oszicar(oszicar)
         if eng != 0.0:
-            print("Relax %s" % dir_path, end="\n")
+            counter += 1
+            # print("Relax %s" % dir_path, end="\n")
             atom_file = address / dir_path / "GEOM_OPT" / "atoms.json"
             with open(atom_file) as f:
                 atoms = json.load(f)
             x, y = sinle_example(atoms, eng)
-            xlist.append(x)
-            ylist.append(y)
 
             slabs = address / dir_path / "slabs"
             if os.path.isfile(slabs):
                 xlist_slab.append(x)
                 ylist_slab.append(y)
+            else:
+                xlist_cluster.append(x)
+                ylist_cluster.append(y)
 
-x = np.array(xlist)
-y = np.array(ylist)
+xcluster = np.array(xlist_cluster)
+ycluster = np.array(ylist_cluster)
 xslab = np.array(xlist_slab)
 yslab = np.array(ylist_slab)
-print(y.shape)
-print(np.max(x))
+
+print("ycluster and yslab sizes: ", ycluster.shape, yslab.shape)
+
+# data divided to 70/15/15 for training/dev/test
+train_size = int(0.7*counter)
+dev_size = int(0.15*counter)
+test_size = int(0.15*counter)
+
+print("training, dev, and test set sizes: ", train_size, dev_size, test_size)
+
+# shuffle data
+perm = list(np.random.permutation(yslab.shape[0]))
+xslab = xslab[perm, :]
+yslab = yslab[perm]
+
+# the amount of the slab examples going to training dataset
+train_from_slab_size = max(0, train_size - int(ycluster.shape[0]))
+xtrain = np.concatenate((xcluster, xslab[:train_from_slab_size, :]))
+ytrain = np.concatenate((ycluster, yslab[:train_from_slab_size]))
+xdev = xslab[train_from_slab_size+1:train_from_slab_size+dev_size+1, :]
+ydev = yslab[train_from_slab_size+1:train_from_slab_size+dev_size+1:]
+xtest = xslab[train_from_slab_size+dev_size+2:, :]
+ytest = yslab[train_from_slab_size+dev_size+2:]
+
+print("xtrain shape: ", xtrain.shape)
+print("ytrain shape: ", ytrain.shape)
+print("xdev shape: ", xdev.shape)
+print("ydev shape: ", ydev.shape)
+print("xtest shape: ", xtest.shape)
+print("ytest shape: ", ytest.shape)
+print(np.max(xtrain), np.max(xdev), np.max(xtest),)
 
 # x = np.divide(x, np.max(x))
 # xslab = np.divide(xslab, np.max(x))
 # # print(x.shape)
 # print(np.max(x))
 
-h5f = h5py.File('datasets/training_2D.h5', 'w')
-h5f.create_dataset('x', data=x)
-h5f.create_dataset('y', data=y)
-h5f.close()
-
-h5f = h5py.File('datasets/slab_2D.h5', 'w')
-h5f.create_dataset('x', data=xslab)
-h5f.create_dataset('y', data=yslab)
+h5f = h5py.File('datasets/data_2D.h5', 'w')
+h5f.create_dataset('xtrain', data=xtrain)
+h5f.create_dataset('ytrain', data=ytrain)
+h5f.create_dataset('xdev', data=xdev)
+h5f.create_dataset('ydev', data=ydev)
+h5f.create_dataset('xtest', data=xtest)
+h5f.create_dataset('ytest', data=ytest)
 h5f.close()
 
 if os.path.isfile('datasets/data.zip'):
     os.system('rm datasets/data.zip')
 os.system('zip -r datasets/data.zip datasets')
-os.system('rm datasets/training_2D.h5')
-os.system('rm datasets/slab_2D.h5')
+os.system('rm datasets/data_2D.h5')
 os.system('rm datasets/surface_2D.h5')
-# dataset_num = int(y.shape[0]/1000)
-# for i in range(dataset_num):
-#     h5f = h5py.File(database_folder+'/training_2D_'+str(i+1)+'.h5', 'w')
-#     h5f.create_dataset('x', data=x[i*1000:(i+1)*1000-1])
-#     h5f.create_dataset('y', data=y[i*1000:(i+1)*1000-1])
-#     h5f.close()
-# h5f = h5py.File(database_folder+'/training_2D_'+str(i+2)+'.h5', 'w')
-# h5f.create_dataset('x', data=x[(i+1)*1000:])
-# h5f.create_dataset('y', data=y[(i+1)*1000:])
-# h5f.close()
-#
-# dataset_num = int(yslab.shape[0]/1000)
-# for i in range(dataset_num):
-#     h5f = h5py.File(database_folder+'/slab_2D_'+str(i+1)+'.h5', 'w')
-#     h5f.create_dataset('x', data=xslab[i*1000:(i+1)*1000-1])
-#     h5f.create_dataset('y', data=yslab[i*1000:(i+1)*1000-1])
-#     h5f.close()
-# h5f = h5py.File(database_folder+'/slab_2D_'+str(i+2)+'.h5', 'w')
-# h5f.create_dataset('x', data=xslab[(i+1)*1000:])
-# h5f.create_dataset('y', data=yslab[(i+1)*1000:])
-# h5f.close()
-
-
-    # plt.hist2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]], cmap=plt.cm.Greys)
-    # cb = plt.colorbar()
-    # plt.title(str(dir_path) + ' opt')
-    # plt.show()
 
 
