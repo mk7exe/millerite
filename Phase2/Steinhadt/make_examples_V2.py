@@ -125,11 +125,11 @@ yslab = np.array(ylist_slab)
 print("ycluster and yslab sizes: ", ycluster.shape, yslab.shape)
 
 # data divided to 70/15/15 for training/dev/test
-train_size = int(0.7*counter)
+train_size = int(0.85*counter)
 dev_size = int(0.15*counter)
-test_size = int(0.15*counter)
+# test_size = int(0.0*counter)
 
-print("training, dev, and test set sizes: ", train_size, dev_size, test_size)
+print("training, dev, and test set sizes: ", train_size, dev_size)
 
 # shuffle data
 perm = list(np.random.permutation(yslab.shape[0]))
@@ -142,16 +142,16 @@ xtrain = np.concatenate((xcluster, xslab[:train_from_slab_size, :]))
 ytrain = np.concatenate((ycluster, yslab[:train_from_slab_size]))
 xdev = xslab[train_from_slab_size+1:train_from_slab_size+dev_size+1, :]
 ydev = yslab[train_from_slab_size+1:train_from_slab_size+dev_size+1:]
-xtest = xslab[train_from_slab_size+dev_size+2:, :]
-ytest = yslab[train_from_slab_size+dev_size+2:]
+# xtest = xslab[train_from_slab_size+dev_size+2:, :]
+# ytest = yslab[train_from_slab_size+dev_size+2:]
 
 print("xtrain shape: ", xtrain.shape)
 print("ytrain shape: ", ytrain.shape)
 print("xdev shape: ", xdev.shape)
 print("ydev shape: ", ydev.shape)
-print("xtest shape: ", xtest.shape)
-print("ytest shape: ", ytest.shape)
-print(np.max(xtrain), np.max(xdev), np.max(xtest),)
+# print("xtest shape: ", xtest.shape)
+# print("ytest shape: ", ytest.shape)
+print(np.max(xtrain), np.max(xdev))
 
 # x = np.divide(x, np.max(x))
 # xslab = np.divide(xslab, np.max(x))
@@ -163,8 +163,8 @@ h5f.create_dataset('xtrain', data=xtrain)
 h5f.create_dataset('ytrain', data=ytrain)
 h5f.create_dataset('xdev', data=xdev)
 h5f.create_dataset('ydev', data=ydev)
-h5f.create_dataset('xtest', data=xtest)
-h5f.create_dataset('ytest', data=ytest)
+h5f.create_dataset('xtest', data=xdev)
+h5f.create_dataset('ytest', data=ydev)
 h5f.close()
 
 if os.path.isfile('datasets/data.zip'):
