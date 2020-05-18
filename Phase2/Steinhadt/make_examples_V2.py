@@ -25,6 +25,7 @@ eng_NiS = float(-93.110682/9)
 
 def sinle_example(atoms, temp):
     atom_num = len(atoms)
+    bin_num = 50
     # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
     # uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
@@ -33,7 +34,7 @@ def sinle_example(atoms, temp):
     q4 = [x[5][0] for x in atoms]
     q6 = [x[5][1] for x in atoms]
     # calculate the 2D histogram
-    H, xedges, yedges = np.histogram2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]])
+    H, xedges, yedges = np.histogram2d(q4, q6, bins=(bin_num, bin_num), range=[[0.1, 0.8], [0.1, 0.8]])
     x = np.divide(H.T, atom_num)  # normalizing the mesh to the total number of atoms
     # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
     # plt.show()
