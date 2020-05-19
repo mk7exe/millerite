@@ -25,7 +25,7 @@ eng_NiS = float(-93.110682/9)
 
 def sinle_example(atoms, temp):
     atom_num = len(atoms)
-    bin_num = 50
+    bin_num = 100
     # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
     # uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
@@ -168,10 +168,10 @@ h5f.create_dataset('xtest', data=xdev)
 h5f.create_dataset('ytest', data=ydev)
 h5f.close()
 
-if os.path.isfile('datasets/data.zip'):
-    os.system('rm datasets/data.zip')
-os.system('zip -r datasets/data.zip datasets')
-os.system('rm datasets/data_2D.h5')
-os.system('rm datasets/surface_2D.h5')
+os.system('zip -r data100.zip datasets')
+# if os.path.isfile('datasets/data.zip'):
+os.system('rm datasets/*')
+# os.system('rm datasets/data_2D.h5')
+# os.system('rm datasets/surface_2D.h5')
 
 
