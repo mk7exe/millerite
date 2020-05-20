@@ -17,15 +17,13 @@ import h5py
 from pathlib import Path
 import matplotlib.pyplot as plt
 from Phase2.Bond_code import utils
-import Phase2.Steinhadt.surface_example_maker
 
-
+bin_num = 50
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
 
 def sinle_example(atoms, temp):
     atom_num = len(atoms)
-    bin_num = 100
     # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
     # uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
@@ -43,6 +41,36 @@ def sinle_example(atoms, temp):
     y = 2 * eng / atom_num - eng_NiS
 
     return x, y
+
+address = Path('/home/khalkhal/Simulations/VASP/Millerite/Surfaces/Initial_Energy')
+struct_num = -1
+print("reading vasp files to build the training set ...")
+counter = 0
+xlist = []
+ylist = []
+for dir_path in os.listdir(address):
+    counter += 1
+    print("Structure %s" % dir_path, end="\n")
+    # first read the unrelaxed structure
+    oszicar = address / dir_path / "OSZICAR"
+    if os.path.isfile(oszicar):
+        eng = utils.read_oszicar(oszicar) # red energy from oszicar. eng = 0.0 if simulation is not finished
+        if eng != 0.0: # deal with the simulation onle if it is finished
+            poscar = address / dir_path / "POSCAR"
+            atoms, cell = utils.read_poscar(poscar)
+            atom_num = len(atoms)
+            atoms = utils.CN(atoms, cell)
+            atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
+            x, y = sinle_example(atoms, eng)
+            xlist.append(x)
+            ylist.append(y)
+x = np.array(xlist)
+y = np.array(ylist)
+
+h5f = h5py.File('datasets/surface_2D.h5', 'w')
+h5f.create_dataset('x', data=x)
+h5f.create_dataset('y', data=y)
+h5f.close()
 
 
 sim_folder_old = Path("/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training")
@@ -168,7 +196,7 @@ h5f.create_dataset('xtest', data=xdev)
 h5f.create_dataset('ytest', data=ydev)
 h5f.close()
 
-os.system('zip -r data100.zip datasets')
+os.system('zip -r data' + str(bin_num) + '.zip datasets')
 # if os.path.isfile('datasets/data.zip'):
 os.system('rm datasets/*')
 # os.system('rm datasets/data_2D.h5')
