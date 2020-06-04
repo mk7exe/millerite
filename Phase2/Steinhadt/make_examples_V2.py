@@ -34,6 +34,15 @@ def sinle_example(atoms, temp):
     q6 = [x[5][1] for x in atoms]
     # calculate the 2D histogram
     h, xedges, yedges = np.histogram2d(q4, q6, bins=(bin_num, bin_num), range=[[0.1, 0.8], [0.1, 0.8]])
+    # print(xedges)
+    # print(yedges)
+    # for i in range(len(xedges)-1):
+    #     for j in range(len(yedges)-1):
+    #         if (h[i][j] != 0):
+    #             print(i, j, xedges[i], yedges[j], h[i][j])
+    # idx = list(h.flatten()).index(h.max())
+    # x, y = idx / h.shape[1], idx % h.shape[1]
+    # print(x, y)
     # f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
     f_x = h.T
     # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
@@ -67,6 +76,7 @@ for dir_path in os.listdir(address):
             x, y = sinle_example(atoms, eng)
             xlist.append(x)
             ylist.append(y)
+
 x = np.array(xlist)
 y = np.array(ylist)
 
@@ -102,6 +112,12 @@ with open(eng_file, 'r') as f:
         xlist_cluster.append(x)
         ylist_cluster.append(y)
 
+        for i in range(10):
+            x[34][65] += 5
+            x[52][23] += 5
+            xlist_cluster.append(x)
+            ylist_cluster.append(y)
+
 # reading new simulations. These simulations also have geometry optimized version saved in GEOM_OPT folder.
 address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
 for dir_path in os.listdir(address):
@@ -125,9 +141,21 @@ for dir_path in os.listdir(address):
             if os.path.isfile(slabs):
                 xlist_slab.append(x)
                 ylist_slab.append(y)
+                for i in range(10):
+                    counter += 1
+                    x[34][65] += 5
+                    x[52][23] += 5
+                    xlist_slab.append(x)
+                    ylist_slab.append(y)
             else:
                 xlist_cluster.append(x)
                 ylist_cluster.append(y)
+                for i in range(10):
+                    counter += 1
+                    x[34][65] += 5
+                    x[52][23] += 5
+                    xlist_cluster.append(x)
+                    ylist_cluster.append(y)
 
     # now read the optimzed structure
     oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
@@ -145,9 +173,21 @@ for dir_path in os.listdir(address):
             if os.path.isfile(slabs):
                 xlist_slab.append(x)
                 ylist_slab.append(y)
+                for i in range(10):
+                    counter += 1
+                    x[34][65] += 5
+                    x[52][23] += 5
+                    xlist_slab.append(x)
+                    ylist_slab.append(y)
             else:
                 xlist_cluster.append(x)
                 ylist_cluster.append(y)
+                for i in range(10):
+                    counter += 1
+                    x[34][65] += 5
+                    x[52][23] += 5
+                    xlist_cluster.append(x)
+                    ylist_cluster.append(y)
 
 xcluster = np.array(xlist_cluster)
 ycluster = np.array(ylist_cluster)
