@@ -25,22 +25,23 @@ eng_NiS = float(-93.110682/9)
 
 def sinle_example(atoms, temp):
     f_atom_num = len(atoms)
-    ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
-    uc_num = len(ids)
+    # ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
+    # uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
     # q4 = [atoms[i][5][0] for i in ids]
     # q6 = [atoms[i][5][1] for i in ids]
-    q4 = [x[5][0] for x in atoms if x[3] != 53 and x[3] != 132]
-    q6 = [x[5][1] for x in atoms if x[3] != 53 and x[3] != 132]
+    q4 = [x[5][0] for x in atoms]
+    q6 = [x[5][1] for x in atoms]
     # calculate the 2D histogram
     h, xedges, yedges = np.histogram2d(q4, q6, bins=(bin_num, bin_num), range=[[0.1, 0.8], [0.1, 0.8]])
-    f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
+    # f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
+    f_x = h.T
     # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
     # plt.show()
     # this is the energy difference between our structure and bulk.
     f_eng = float(temp)
     f_y = f_eng - eng_NiS * f_atom_num / 2
-    f_y /= uc_num
+    # f_y /= uc_num
 
     return f_x, f_y
 
