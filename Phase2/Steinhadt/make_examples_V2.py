@@ -54,20 +54,36 @@ def sinle_example(atoms, temp):
 
     return f_x, f_y
 
-address = Path('/home/khalkhal/Simulations/VASP/Millerite/Surfaces/Initial_Energy')
+
+os.system('rm datasets/*')
+
+address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/surfaces')
 struct_num = -1
 print("reading vasp files to build the training set ...")
 counter = 0
 xlist = []
 ylist = []
 for dir_path in os.listdir(address):
-    counter += 1
     print("Structure %s" % dir_path, end="\n")
     # first read the unrelaxed structure
     oszicar = address / dir_path / "OSZICAR"
     if os.path.isfile(oszicar):
         eng = utils.read_oszicar(oszicar) # red energy from oszicar. eng = 0.0 if simulation is not finished
-        if eng != 0.0: # deal with the simulation onle if it is finished
+        if eng != 0.0: # deal with the simulation only if it is finished
+            counter += 1
+            poscar = address / dir_path / "POSCAR"
+            atoms, cell = utils.read_poscar(poscar)
+            atom_num = len(atoms)
+            atoms = utils.CN(atoms, cell)
+            atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
+            x, y = sinle_example(atoms, eng)
+            xlist.append(x)
+            ylist.append(y)
+    oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
+    if os.path.isfile(oszicar):
+        eng = utils.read_oszicar(oszicar)  # red energy from oszicar. eng = 0.0 if simulation is not finished
+        if eng != 0.0:  # deal with the simulation only if it is finished
+            counter += 1
             poscar = address / dir_path / "POSCAR"
             atoms, cell = utils.read_poscar(poscar)
             atom_num = len(atoms)
@@ -242,6 +258,7 @@ h5f.close()
 os.system('zip -r data' + str(bin_num) + '.zip datasets')
 # if os.path.isfile('datasets/data.zip'):
 os.system('rm datasets/*')
+os.system('mv data' + str(bin_num) + '.zip datasets')
 # os.system('rm datasets/data_2D.h5')
 # os.system('rm datasets/surface_2D.h5')
 

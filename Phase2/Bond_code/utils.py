@@ -126,12 +126,12 @@ def read_poscar(filename):
     return atoms, cell
 
 
-def write_poscar_v2(address, atoms, cell, constraint):
+def write_poscar_v2(address, filename, atoms, cell, constraint):
     """function to write VASP POSCAR file for a configuration"""
     atoms.sort(key=lambda x: x[2][0])  # Sort to write Ni atoms first
     file = address / 'POSCAR'
     with open(file, "w") as f:
-        f.write("Structure made with write_poscar_v2\n")
+        f.write("POSCAR made from %s file\n" % (filename))
         f.write("1.0\n")
         f.write("%20.10f%20.10f%20.10f\n" % (cell[0][0], cell[0][1], cell[0][2]))
         f.write("%20.10f%20.10f%20.10f\n" % (cell[1][0], cell[1][1], cell[1][2]))
