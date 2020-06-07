@@ -26,7 +26,7 @@ eng_NiS = float(-93.110682/9)
 def sinle_example(atoms, temp):
     f_atom_num = len(atoms)
     ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
-    # uc_num = len(ids)
+    uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
     q4 = [atoms[i][5][0] for i in ids]
     q6 = [atoms[i][5][1] for i in ids]
@@ -43,14 +43,14 @@ def sinle_example(atoms, temp):
     # idx = list(h.flatten()).index(h.max())
     # x, y = idx / h.shape[1], idx % h.shape[1]
     # print(x, y)
-    # f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
-    f_x = h.T
+    f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
+    # f_x = h.T
     # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
     # plt.show()
     # this is the energy difference between our structure and bulk.
     f_eng = float(temp)
     f_y = f_eng - eng_NiS * f_atom_num / 2
-    # f_y /= uc_num
+    f_y /= uc_num
 
     return f_x, f_y
 
@@ -77,6 +77,7 @@ for dir_path in os.listdir(address):
             atoms = utils.CN(atoms, cell)
             atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
             x, y = sinle_example(atoms, eng)
+            # print (x, y)
             xlist.append(x)
             ylist.append(y)
     oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
@@ -90,6 +91,7 @@ for dir_path in os.listdir(address):
             atoms = utils.CN(atoms, cell)
             atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
             x, y = sinle_example(atoms, eng)
+            # print(x, y)
             xlist.append(x)
             ylist.append(y)
 
