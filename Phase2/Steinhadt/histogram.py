@@ -1,36 +1,70 @@
-import json
+import h5py
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
-with open('q4.txt', 'r') as f:
-    q4 = json.load(f)
-    print(min(q4), max(q4))
-with open('q6.txt', 'r') as f:
-    q6 = json.load(f)
-    print(min(q6), max(q6))
-with open('q10.txt', 'r') as f:
-    q10 = json.load(f)
-with open('q8.txt', 'r') as f:
-    q8 = json.load(f)
+# os.system('unzip -o structural_parameters/q100.zip')
 
-plt.hist2d(q4, q6, bins=(100, 100), range=[[0.1, 0.8], [0.1, 0.8]], cmap=plt.cm.jet)
-cb = plt.colorbar()
+dataset = h5py.File('structural_parameters/surface_Q.h5', "r")
+surf_q4 = np.array(dataset["q4"][:])
+surf_q6 = np.array(dataset["q6"][:])
+
+dataset = h5py.File('structural_parameters/cluster_Q.h5', "r")
+clus_q4 = np.array(dataset["q4"][:])
+clus_q6 = np.array(dataset["q6"][:])
+
+dataset = h5py.File('structural_parameters/slab_Q.h5', "r")
+slab_q4 = np.array(dataset["q4"][:])
+slab_q6 = np.array(dataset["q6"][:])
+
+x = np.arange(100)
+x_pos = np.arange(0, 110, step=10)
+x_label = [str(np.round(i*0.01, 2)) for i in x_pos]
+
+plt.figure()
+plt.subplot(1, 2, 1)
+plt.bar(x, surf_q4)
+plt.ylabel('Q4')
+plt.title('Surface')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
+
+plt.subplot(1, 2, 2)
+plt.bar(x, surf_q6)
+plt.ylabel('Q6')
+plt.title('Surface')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
 plt.show()
 
-plt.hist(q4, bins=50, range=[0.1, 0.8])
-plt.title('q4')
+plt.figure()
+plt.subplot(1, 2, 1)
+plt.bar(x, slab_q4)
+plt.ylabel('Q4')
+plt.title('Slab')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
+
+plt.subplot(1, 2, 2)
+plt.bar(x, slab_q6)
+plt.ylabel('Q6')
+plt.title('Slab')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
 plt.show()
 
-plt.hist(q6, bins=50, range=[0.1, 0.8])
-plt.title('q6')
-plt.show()
+plt.figure()
+plt.subplot(1, 2, 1)
+plt.bar(x, clus_q4)
+plt.ylabel('Q4')
+plt.title('Cluster')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
 
-plt.hist(q8, bins=50, range=[0, 1])
-plt.title('q8')
+plt.subplot(1, 2, 2)
+plt.bar(x, clus_q6)
+plt.ylabel('Q6')
+plt.title('Cluster')
+plt.xticks(x_pos, x_label)
+plt.xticks(rotation=90)
 plt.show()
-
-plt.hist(q10, bins=50, range=[0, 1])
-plt.title('q10')
-plt.show()
-# hist, bin_edges = np.histogram(q4, bin=100, density=True)
-# print(hist)

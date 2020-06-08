@@ -24,6 +24,12 @@ hisHigh = 1.0
 #Energy per NiS in Millerite unitcell
 eng_NiS = float(-93.110682/9)
 
+q4_his_slabs = np.zeros(bin_num)
+q6_his_slabs = np.zeros(bin_num)
+q4_his_clusters = np.zeros(bin_num)
+q6_his_clusters = np.zeros(bin_num)
+q4_his_surfaces = np.zeros(bin_num)
+q6_his_surfaces = np.zeros(bin_num)
 
 def sinle_example(atoms, temp):
     f_atom_num = len(atoms)
@@ -35,36 +41,17 @@ def sinle_example(atoms, temp):
     # q4 = [x[5][0] for x in atoms]
     # q6 = [x[5][1] for x in atoms]
     # calculate the 2D histogram
-    h, xedges, yedges = np.histogram2d(q4, q6, bins=(bin_num, bin_num), range=[[hisLow, hisHigh], [hisLow, hisHigh]])
-    # print(xedges)
-    # print(yedges)
-    # for i in range(len(xedges)-1):
-    #     for j in range(len(yedges)-1):
-    #         if (h[i][j] != 0):
-    #             print(i, j, xedges[i], yedges[j], h[i][j])
-    # idx = list(h.flatten()).index(h.max())
-    # x, y = idx / h.shape[1], idx % h.shape[1]
-    # print(x, y)
-    f_x = np.divide(h.T, uc_num)  # normalizing the mesh to the total number of atoms
-    # f_x = h.T
-    # plt.imshow(H, interpolation='nearest', origin='low', extent=[xedges[0], xedges[-1], yedges[0], yedges[-1]])
-    # plt.show()
-    # this is the energy difference between our structure and bulk.
-    f_eng = float(temp)
-    f_y = f_eng - eng_NiS * f_atom_num / 2
-    f_y /= uc_num
-
-    return f_x, f_y
+    hQ4, bin_edges = np.histogram(q4, bins=bin_num, range=[hisLow, hisHigh])
+    hQ6, bin_edges = np.histogram(q6, bins=bin_num, range=[hisLow, hisHigh])
+    return hQ4, hQ6
 
 
-os.system('rm datasets/*')
+os.system('rm structural_parameters/*')
 
 address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/surfaces')
 struct_num = -1
 print("reading vasp files to build the training set ...")
 counter = 0
-xlist = []
-ylist = []
 for dir_path in os.listdir(address):
     print("Structure %s" % dir_path, end="\n")
     # first read the unrelaxed structure
@@ -78,10 +65,9 @@ for dir_path in os.listdir(address):
             atom_num = len(atoms)
             atoms = utils.CN(atoms, cell)
             atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
-            x, y = sinle_example(atoms, eng)
-            # print (x, y)
-            xlist.append(x)
-            ylist.append(y)
+            hQ4, hQ6 = sinle_example(atoms, eng)
+            q4_his_surfaces += hQ4
+            q6_his_surfaces += hQ6
     oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
     if os.path.isfile(oszicar):
         eng = utils.read_oszicar(oszicar)  # red energy from oszicar. eng = 0.0 if simulation is not finished
@@ -92,17 +78,13 @@ for dir_path in os.listdir(address):
             atom_num = len(atoms)
             atoms = utils.CN(atoms, cell)
             atoms = utils.steinhardt(atoms, cell, 2.55, [4, 6, 8, 10])
-            x, y = sinle_example(atoms, eng)
-            # print(x, y)
-            xlist.append(x)
-            ylist.append(y)
+            hQ4, hQ6 = sinle_example(atoms, eng)
+            q4_his_surfaces += hQ4
+            q6_his_surfaces += hQ6
 
-x = np.array(xlist)
-y = np.array(ylist)
-
-h5f = h5py.File('datasets/surface_2D.h5', 'w')
-h5f.create_dataset('x', data=x)
-h5f.create_dataset('y', data=y)
+h5f = h5py.File('structural_parameters/surface_Q.h5', 'w')
+h5f.create_dataset('q4', data=q4_his_surfaces)
+h5f.create_dataset('q6', data=q6_his_surfaces)
 h5f.close()
 
 
@@ -112,10 +94,7 @@ struct_num = -1
 
 print("reading vasp files to build the training set ...")
 counter = 0
-xlist_cluster = []
-ylist_cluster = []
-xlist_slab = []
-ylist_slab = []
+
 # reading the old simulations. Vasp files were removed but energies can be written from energy.dat file. POSCAR files
 # can be written normally.
 with open(eng_file, 'r') as f:
@@ -128,9 +107,9 @@ with open(eng_file, 'r') as f:
         atom_file = sim_folder_old / "VASP_files" / str(id) / "atoms.json"
         with open(atom_file) as f:
             atoms = json.load(f)  # atoms have already saved in atoms.json
-        x, y = sinle_example(atoms, temp[5])
-        xlist_cluster.append(x)
-        ylist_cluster.append(y)
+        hQ4, hQ6 = sinle_example(atoms, eng)
+        q4_his_clusters += hQ4
+        q6_his_clusters += hQ6
 
 # reading new simulations. These simulations also have geometry optimized version saved in GEOM_OPT folder.
 address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/VASP_folder')
@@ -149,15 +128,15 @@ for dir_path in os.listdir(address):
             atom_file = address / dir_path / "atoms.json"
             with open(atom_file) as f:
                 atoms = json.load(f) # atoms have already saved in atoms.json
-            x, y = sinle_example(atoms, eng)
+            hQ4, hQ6 = sinle_example(atoms, eng)
 
             slabs = address / dir_path / "slabs"
             if os.path.isfile(slabs):
-                xlist_slab.append(x)
-                ylist_slab.append(y)
+                q4_his_slabs += hQ4
+                q6_his_slabs += hQ6
             else:
-                xlist_cluster.append(x)
-                ylist_cluster.append(y)
+                q4_his_clusters += hQ4
+                q6_his_clusters += hQ6
 
     # now read the optimzed structure
     oszicar = address / dir_path / "GEOM_OPT" / "OSZICAR"
@@ -169,72 +148,29 @@ for dir_path in os.listdir(address):
             atom_file = address / dir_path / "GEOM_OPT" / "atoms.json"
             with open(atom_file) as f:
                 atoms = json.load(f)
-            x, y = sinle_example(atoms, eng)
+            hQ4, hQ6 = sinle_example(atoms, eng)
 
             slabs = address / dir_path / "slabs"
             if os.path.isfile(slabs):
-                xlist_slab.append(x)
-                ylist_slab.append(y)
+                q4_his_slabs += hQ4
+                q6_his_slabs += hQ6
             else:
-                xlist_cluster.append(x)
-                ylist_cluster.append(y)
+                q4_his_clusters += hQ4
+                q6_his_clusters += hQ6
 
-xcluster = np.array(xlist_cluster)
-ycluster = np.array(ylist_cluster)
-xslab = np.array(xlist_slab)
-yslab = np.array(ylist_slab)
-
-print("ycluster and yslab sizes: ", ycluster.shape, yslab.shape)
-
-# data divided to 70/15/15 for training/dev/test
-train_size = int(0.85*counter)
-dev_size = int(0.15*counter)
-# test_size = int(0.0*counter)
-
-print("training, dev, and test set sizes: ", train_size, dev_size)
-
-# shuffle data
-perm = list(np.random.permutation(yslab.shape[0]))
-xslab = xslab[perm, :]
-yslab = yslab[perm]
-
-# the amount of the slab examples going to training dataset
-train_from_slab_size = max(0, train_size - int(ycluster.shape[0]))
-xtrain = np.concatenate((xcluster, xslab[:train_from_slab_size, :]))
-ytrain = np.concatenate((ycluster, yslab[:train_from_slab_size]))
-xdev = xslab[train_from_slab_size+1:train_from_slab_size+dev_size+1, :]
-ydev = yslab[train_from_slab_size+1:train_from_slab_size+dev_size+1:]
-# xtest = xslab[train_from_slab_size+dev_size+2:, :]
-# ytest = yslab[train_from_slab_size+dev_size+2:]
-
-print("xtrain shape: ", xtrain.shape)
-print("ytrain shape: ", ytrain.shape)
-print("xdev shape: ", xdev.shape)
-print("ydev shape: ", ydev.shape)
-# print("xtest shape: ", xtest.shape)
-# print("ytest shape: ", ytest.shape)
-max_x = max(np.max(xtrain), np.max(xdev))
-print(np.max(xtrain), np.max(xdev), max_x)
-
-# xtrain = np.divide(x, np.max(x))
-# xslab = np.divide(xslab, np.max(x))
-# # print(x.shape)
-# print(np.max(x))
-
-h5f = h5py.File('datasets/data_2D.h5', 'w')
-h5f.create_dataset('xtrain', data=xtrain)
-h5f.create_dataset('ytrain', data=ytrain)
-h5f.create_dataset('xdev', data=xdev)
-h5f.create_dataset('ydev', data=ydev)
-h5f.create_dataset('xtest', data=xdev)
-h5f.create_dataset('ytest', data=ydev)
+h5f = h5py.File('structural_parameters/cluster_Q.h5', 'w')
+h5f.create_dataset('q4', data=q4_his_clusters)
+h5f.create_dataset('q6', data=q6_his_clusters)
 h5f.close()
 
-os.system('zip -r data' + str(bin_num) + '.zip datasets')
-# if os.path.isfile('datasets/data.zip'):
-os.system('rm datasets/*')
-os.system('mv data' + str(bin_num) + '.zip datasets')
-# os.system('rm datasets/data_2D.h5')
-# os.system('rm datasets/surface_2D.h5')
+h5f = h5py.File('structural_parameters/slab_Q.h5', 'w')
+h5f.create_dataset('q4', data=q4_his_slabs)
+h5f.create_dataset('q6', data=q6_his_slabs)
+h5f.close()
+
+os.system('zip -r q' + str(bin_num) + '.zip structural_parameters')
+os.system('rm structural_parameters/*')
+os.system('mv q' + str(bin_num) + '.zip structural_parameters')
+
 
 
