@@ -4,7 +4,7 @@ import h5py
 <<<<<<< HEAD
 root_path = '../datasets'
 =======
-root_path = 'datasets'
+root_path = 'old_datasets'
 >>>>>>> origin/master
 
 def load_data():

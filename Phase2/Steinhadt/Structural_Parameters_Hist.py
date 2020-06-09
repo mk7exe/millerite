@@ -1,7 +1,7 @@
 '''
 This code make the dataset for the NN training. In each example, x is a structure identifier and y in the energy
 difference between the structure and bulk with teh same number of atoms. The excess energy is due to undercoordinated
-atoms, so only undercoordinated atoms are considered in datasets. The structure identifier (x) is a 100x100
+atoms, so only undercoordinated atoms are considered in old_datasets. The structure identifier (x) is a 100x100
 matrix. x and y axes of the matrix represent 100-bin histograms of q4 and q6 parameters restricted between 0.1 and 0.8.
 Each cell represents the number of atoms having steinhardt parameters in the corresponding range.
 

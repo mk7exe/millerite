@@ -55,7 +55,7 @@ def sinle_example(atoms, temp):
     return f_x, f_y
 
 
-os.system('rm datasets/*')
+os.system('rm old_datasets/*')
 
 address = Path('/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/new-training-builder/surfaces')
 struct_num = -1
@@ -96,7 +96,7 @@ for dir_path in os.listdir(address):
 x = np.array(xlist)
 y = np.array(ylist)
 
-h5f = h5py.File('datasets/surface_2D.h5', 'w')
+h5f = h5py.File('old_datasets/surface_2D.h5', 'w')
 h5f.create_dataset('x', data=x)
 h5f.create_dataset('y', data=y)
 h5f.close()
@@ -246,7 +246,7 @@ print(np.max(xtrain), np.max(xdev))
 # # print(x.shape)
 # print(np.max(x))
 
-h5f = h5py.File('datasets/data_2D.h5', 'w')
+h5f = h5py.File('old_datasets/data_2D.h5', 'w')
 h5f.create_dataset('xtrain', data=xtrain)
 h5f.create_dataset('ytrain', data=ytrain)
 h5f.create_dataset('xdev', data=xdev)
@@ -255,11 +255,11 @@ h5f.create_dataset('xtest', data=xdev)
 h5f.create_dataset('ytest', data=ydev)
 h5f.close()
 
-os.system('zip -r data' + str(bin_num) + '.zip datasets')
-# if os.path.isfile('datasets/data.zip'):
-os.system('rm datasets/*')
-os.system('mv data' + str(bin_num) + '.zip datasets')
-# os.system('rm datasets/data_2D.h5')
-# os.system('rm datasets/surface_2D.h5')
+os.system('zip -r data' + str(bin_num) + '.zip old_datasets')
+# if os.path.isfile('old_datasets/data.zip'):
+os.system('rm old_datasets/*')
+os.system('mv data' + str(bin_num) + '.zip old_datasets')
+# os.system('rm old_datasets/data_2D.h5')
+# os.system('rm old_datasets/surface_2D.h5')
 
 

@@ -1,6 +1,6 @@
 '''
-In this version datasets are built from csv and dat files containing struc_lists and energies, respectively. In v1,
-datasets are built by reading POSCAR and OZICARS directly.
+In this version old_datasets are built from csv and dat files containing struc_lists and energies, respectively. In v1,
+old_datasets are built by reading POSCAR and OZICARS directly.
 '''
 
 import h5py

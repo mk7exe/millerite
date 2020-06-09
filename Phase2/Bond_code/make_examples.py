@@ -51,7 +51,7 @@ test_folder = Path('/home/khalkhal/Simulations/VASP/Millerite/Surfaces/Initial_E
 x_test, y_test = read_data(test_folder, -1)
 print(x_test.shape, y_test.shape)
 
-# h5f = h5py.File('datasets/training_dataset.h5', 'w')
+# h5f = h5py.File('old_datasets/training_dataset.h5', 'w')
 # h5f.create_dataset('train_set_x', data=x_train)
 # h5f.create_dataset('train_set_y', data=y_train)
 # h5f.close()
