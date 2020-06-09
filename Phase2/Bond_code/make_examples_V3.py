@@ -65,13 +65,8 @@ for dir_path in os.listdir(address):
             xlist.append(x)
             ylist.append(y)
 
-x = np.array(xlist)
-y = np.array(ylist)
-
-h5f = h5py.File('datasets/surface_2D.h5', 'w')
-h5f.create_dataset('x', data=x)
-h5f.create_dataset('y', data=y)
-h5f.close()
+xsurf = np.array(xlist)
+ysurf = np.array(ylist)
 
 
 sim_folder_old = Path("/home/khalkhal/Simulations/VASP/Millerite/Machine_Learning/DataSet/Big_Training")
@@ -162,6 +157,8 @@ h5f.create_dataset('xdev', data=xdev)
 h5f.create_dataset('ydev', data=ydev)
 h5f.create_dataset('xtest', data=xdev)
 h5f.create_dataset('ytest', data=ydev)
+h5f.create_dataset('xsurf', data=xsurf)
+h5f.create_dataset('ysurf', data=ysurf)
 h5f.close()
 
 os.system('zip -r data.zip datasets')
