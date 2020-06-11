@@ -25,17 +25,18 @@ eng_NiS = float(-93.110682/9)
 
 
 def sinle_example(atoms, temp):
-    f_atom_num = len(atoms)
+    atom_num = len(atoms)
     ids = [i for i in range(len(atoms)) if atoms[i][3] != 53 and atoms[i][3] != 132]  # find surface atoms
     uc_num = len(ids)
     # we are only interested in order parameters of atoms on (or near) surface
     code = utils.struc_code(atoms)
-    x = np.divide(code, uc_num)  # normalizing the mesh to the total number of atoms
+    x = code
+    # x = np.divide(code, uc_num)  # normalizing the mesh to the total number of atoms
 
     # this is the energy difference between our structure and bulk.
     eng = float(temp)
-    y = eng - eng_NiS * f_atom_num / 2
-    y /= uc_num
+    y = eng - eng_NiS * atom_num / 2
+    # y /= uc_num
 
     return x, y
 

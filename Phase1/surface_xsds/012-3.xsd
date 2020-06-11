@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="latin1"?>
+<!DOCTYPE XSD []>
+<XSD Version="8.0" WrittenBy="Materials Studio 8.0">
+	<AtomisticTreeRoot ID="1" NumProperties="61" NumChildren="1">
+		<Property Name="AngleAxisType" DefinedOn="AngleBetweenPlanesBender" Type="Enumerated"/>
+		<Property Name="AngleEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="BeadDocumentID" DefinedOn="MesoMoleculeSet" Type="String"/>
+		<Property Name="BendBendEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="BendTorsionBendEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="BondEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="EFGAsymmetry" DefinedOn="Atom" Type="Double"/>
+		<Property Name="EFGQuadrupolarCoupling" DefinedOn="Atom" Type="Double"/>
+		<Property Name="ElectrostaticEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="FaceMillerIndex" DefinedOn="GrowthFace" Type="MillerIndex"/>
+		<Property Name="FacetTransparency" DefinedOn="GrowthFace" Type="Float"/>
+		<Property Name="FermiLevel" DefinedOn="ScalarFieldBase" Type="Double"/>
+		<Property Name="Force" DefinedOn="Matter" Type="CoDirection"/>
+		<Property Name="FrameFilter" DefinedOn="Trajectory" Type="String"/>
+		<Property Name="HarmonicForceConstant" DefinedOn="HarmonicRestraint" Type="Double"/>
+		<Property Name="HarmonicMinimum" DefinedOn="HarmonicRestraint" Type="Double"/>
+		<Property Name="HydrogenBondEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="ImportOrder" DefinedOn="Bondable" Type="UnsignedInteger"/>
+		<Property Name="InversionEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="IsBackboneAtom" DefinedOn="Atom" Type="Boolean"/>
+		<Property Name="IsChiralCenter" DefinedOn="Atom" Type="Boolean"/>
+		<Property Name="IsOutOfPlane" DefinedOn="Atom" Type="Boolean"/>
+		<Property Name="IsRepeatArrowVisible" DefinedOn="ElectrodeWire" Type="Boolean"/>
+		<Property Name="KineticEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="LineExtentPadding" DefinedOn="BestFitLineMonitor" Type="Double"/>
+		<Property Name="LinkageGroupName" DefinedOn="Linkage" Type="String"/>
+		<Property Name="ListIdentifier" DefinedOn="PropertyList" Type="String"/>
+		<Property Name="NMRShielding" DefinedOn="Atom" Type="Double"/>
+		<Property Name="NonBondEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="NormalMode" DefinedOn="Bondable" Type="Direction"/>
+		<Property Name="NormalModeFrequency" DefinedOn="Bondable" Type="Double"/>
+		<Property Name="NumScanSteps" DefinedOn="LinearScan" Type="UnsignedInteger"/>
+		<Property Name="OrbitalCutoffRadius" DefinedOn="Bondable" Type="Double"/>
+		<Property Name="PlaneExtentPadding" DefinedOn="BestFitPlaneMonitor" Type="Double"/>
+		<Property Name="PotentialEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="QuantizationValue" DefinedOn="ScalarFieldBase" Type="Double"/>
+		<Property Name="RelativeVelocity" DefinedOn="Matter" Type="Direction"/>
+		<Property Name="RepeatArrowScale" DefinedOn="ElectrodeWire" Type="Float"/>
+		<Property Name="RestraintEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="ScanEnd" DefinedOn="LinearScan" Type="Double"/>
+		<Property Name="ScanStart" DefinedOn="LinearScan" Type="Double"/>
+		<Property Name="SeparatedStretchStretchEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="ServerDipoleMoment" DefinedOn="MatterGroupProperties" Type="Direction"/>
+		<Property Name="SimulationStep" DefinedOn="Trajectory" Type="Integer"/>
+		<Property Name="SpinQuantizationDirection" DefinedOn="Atom" Type="Direction"/>
+		<Property Name="Stiffness" DefinedOn="SymmetryMatterHessian" Type="Matrix6x6"/>
+		<Property Name="StretchBendStretchEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="StretchStretchEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="StretchTorsionStretchEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="Temperature" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="ThreeBodyNonBondEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="TorsionBendBendEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="TorsionEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="TorsionStretchEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="TotalEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="Units" DefinedOn="ScalarFieldBase" Type="String"/>
+		<Property Name="ValenceCrossTermEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="ValenceDiagonalEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="VanDerWaalsEnergy" DefinedOn="ClassicalEnergyHolder" Type="Double"/>
+		<Property Name="_Stress" DefinedOn="MatterSymmetrySystem" Type="Matrix"/>
+		<Property Name="_TrajectoryStress" DefinedOn="MatterSymmetrySystem" Type="Matrix"/>
+		<SymmetrySystem ID="2" Mapping="3" Children="ci(257):257+4" Normalized="1" Name="VESTA_phase_1" XYZ="0.0545147079974418,-0.018898539717764,0.483345111506591" OverspecificationTolerance="0.2">
+			<MappingSet ID="261" SymmetryDefinition="260" ActiveSystem="2" NumFamilies="1" OwnsTotalConstraintMapping="1" TotalConstraintMapping="3">
+				<MappingFamily ID="262" NumImageMappings="22">
+					<IdentityMapping ID="263" Element="1,0,0,0,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(256):7,11,15,6,5,9,13,4,8,12,10,14,16,18,23,20,24,27,22,26,19,21,25,17,32,35,39,2+29,34,38,28,31,36,33,37,136,140,144,219,135,138,142,134,137,141,139,143,145,147,152,149,153,156,151,155,148,150,154,146,161,163,166,2+158,162,165,157,160,164,2+132,57,116,61,118,120,101,97,40,56,86,42,47,59,90,58,89,254,44,49,62,93,63,94,119,68,99,96,71,102,67,98,75,72,103,73,104,69,100,74,105,78,131,82,77,122,85,81,124,52,108,107,121,54,2+111,115,83,79,256,84,257,51,246,53,247,55,126,128,130,2+248,258,129,241,239,242,238,215,240,216,245,252,251,167,179,169,172,181,180,197,171,173,182,201,183,202,217,185,205,203,187,207,184,204,243,188,208,189,186,190,221,233,223,220,229,250,222,230,175,212,211,255,177,2+213,253,192,191,193,2+231,259,218,41,46,88,87,43,48,92,60,91,45,50,64,95,65,70,66,117,123,125,235,106,236,110,109,237,2+113,80,198,76,194,174,176,206,178,2+209,226,224,127,168,196,195,170,200,199,234,244,225,2+227" DefectObjects="260,264" NumImages="256" NumDefects="2">
+						<Atom3d ID="7" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997445,0.175765631640353,0.0810877423217243" Connections="41,46,88,57,87,116" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="11" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997445,0.123913697466224,0.243263226965173" Connections="43,48,61,92,60,91,118" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="15" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997446,0.072061763292095,0.405438711608622" Connections="45,50,64,95,65,120" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="6" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997444,0.00361159872607396,0.149880853035639" Connections="70,101,66,97,117" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="5" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997445,0.451691591276837,1.66533453693773e-016" Connections="40,56,86" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="9" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997446,0.399839657102708,0.162175484643449" Connections="42,47,59,90,58,89,254" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="13" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997446,0.347987722928579,0.324350969286897" Connections="44,49,62,93,63,94,119" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="4" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.279537558362558,0.0687931107139144" Connections="68,99,96,116" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="8" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.227685624188429,0.230968595357363" Connections="71,102,67,98,118" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="12" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.1758336900143,0.393144080000811" Connections="75,72,103,120" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="10" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997443,0.451759649650784,0.312056337679087" Connections="73,104,69,100,119" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="14" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997444,0.399907715476655,0.474231822322536" Connections="74,105" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="16" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.0545147079974409,0.299063752273309,0.0149857175414885" Connections="78,265,131" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="18" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.0545147079974408,0.24721181809918,0.177161202184937" Connections="82,266,77,267,122" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="23" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.0545147079974411,0.195359883925051,0.339336686828385" Connections="85,268,81,269,124" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="20" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997442,0.208534959068384,0.140751616595596" Connections="47,52,68,108,67,107,121" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="24" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997442,0.156683024894255,0.302927101239045" Connections="49,54,71,111,72,112,123" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="27" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997442,0.104831090720126,0.465102585882493" Connections="75,115,125" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="22" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.554514707997441,0.471285843561535,0.258248944506661" Connections="83,93,79,89,256" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="26" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.554514707997441,0.419433909387405,0.42042442915011" Connections="84,94,257" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="19" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974414,0.484460918704868,0.0596638742738718" Connections="235,51,246,106,131" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="21" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974413,0.432608984530739,0.22183935891732" Connections="236,53,247,110,69,109,122" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="25" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974415,0.38075705035661,0.384014843560769" Connections="237,55,73,113,74,114,124" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="17" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.55451470799744,0.0231377926368252,0.0960734598632125" Connections="80,198,76,194,121" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="32" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.175765631640354,0.0810877423217242" Connections="174,270,78,77,97,126" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="35" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.123913697466224,0.243263226965173" Connections="176,271,82,101,81,206,128" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="39" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.0720617632920953,0.405438711608622" Connections="178,272,85,209,210,130" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="29" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.00361159872607335,0.149880853035639" Connections="61,226,57,224,127" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="30" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997436,0.451691591276837,1.11022302462516e-016" Connections="40,248,96" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="34" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997437,0.399839657102708,0.162175484643449" Connections="52,42,249,99,79,98,258" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="38" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997437,0.347987722928579,0.324350969286897" Connections="54,44,83,102,84,103,129" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="28" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.386299707997439,0.279537558362557,0.0687931107139144" Connections="59,108,56,126" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="31" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.386299707997439,0.227685624188428,0.230968595357363" Connections="62,111,58,107,128" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="36" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.386299707997439,0.175833690014299,0.393144080000811" Connections="115,63,112,130" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="33" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.451759649650784,0.312056337679087" Connections="241,273,239,274,129" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="37" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.399907715476654,0.474231822322536" Connections="242,275" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="136" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997445,0.675765631640353,0.0810877423217243" Connections="168,276,196,238,195,215" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="140" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997445,0.623913697466224,0.243263226965173" Connections="170,277,240,200,239,199,216" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="144" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.922411707997446,0.572061763292095,0.405438711608622" Connections="234,278,241,244,242,245" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="219" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997444,0.503611598726074,0.149880853035639" Connections="247,252,246,251,254" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="135" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997445,0.951691591276837,1.11022302462516e-016" Connections="167,179,279" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="138" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997446,0.899839657102708,0.162175484643449" Connections="169,172,181,280,180,197,281" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="142" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.422411707997446,0.847987722928579,0.324350969286897" Connections="171,173,182,201,183,202,217" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="134" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.779537558362558,0.0687931107139141" Connections="185,205,203,215" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="137" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.727685624188429,0.230968595357363" Connections="187,207,184,204,216" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="141" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.722729707997444,0.6758336900143,0.393144080000811" Connections="243,188,208,245" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="139" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997443,0.951759649650784,0.312056337679087" Connections="189,282,186,283,217" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="143" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.222729707997444,0.899907715476655,0.474231822322536" Connections="190,284" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="145" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.054514707997441,0.799063752273309,0.0149857175414886" Connections="221,285,233" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="147" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.0545147079974411,0.74721181809918,0.177161202184937" Connections="223,286,220,287,229" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="152" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.0545147079974411,0.695359883925051,0.339336686828385" Connections="250,288,222,289,230" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="149" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997442,0.708534959068384,0.140751616595596" Connections="172,175,185,212,184,211,255" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="153" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997443,0.656683024894255,0.302927101239045" Connections="173,177,187,213,188,214,256" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="156" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.554514707997442,0.604831090720126,0.465102585882493" Connections="243,253,257" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="151" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.554514707997441,0.971285843561535,0.258248944506661" Connections="192,201,191,197,290" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="155" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.554514707997441,0.919433909387405,0.42042442915011" Connections="193,202,291" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="148" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974414,0.984460918704868,0.0596638742738717" Connections="292,293,294,295,233" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="150" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974412,0.932608984530739,0.22183935891732" Connections="296,297,298,299,186,225,229" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="154" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.0545147079974414,0.88075705035661,0.384014843560769" Connections="300,301,189,227,190,228,230" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="146" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.55451470799744,0.523137792636825,0.0960734598632124" Connections="249,90,248,86,255" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="161" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.675765631640354,0.0810877423217242" Connections="51,302,221,220,251,231" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="163" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.623913697466224,0.243263226965173" Connections="53,303,223,252,222,100,232" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="166" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.186617707997436,0.572061763292095,0.405438711608622" Connections="55,304,250,104,105,259" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="158" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.503611598726074,0.149880853035638" Connections="240,305,238,306,258" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="159" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997436,0.951691591276838,-1.66533453693773e-016" Connections="167,307,203" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="162" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997437,0.899839657102709,0.162175484643449" Connections="175,169,308,205,191,204,309" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="165" Mapping="263" Parent="2" Name="Ni1" DisplayStyle="CPK" XYZ="0.686617707997437,0.847987722928579,0.324350969286897" Connections="177,171,192,207,193,208,218" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="Ni" Charge="2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="Ni"/>
+						<Atom3d ID="157" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.386299707997439,0.779537558362558,0.0687931107139142" Connections="181,212,179,231" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="160" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.386299707997439,0.727685624188428,0.230968595357363" Connections="182,213,180,211,232" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="164" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.38629970799744,0.675833690014299,0.393144080000811" Connections="253,183,214,259" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="132" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.951759649650784,0.312056337679087" Connections="310,311,312,313,218" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Atom3d ID="133" Mapping="263" Parent="2" Name="S1" DisplayStyle="CPK" XYZ="0.886299707997438,0.899907715476654,0.474231822322536" Connections="314,315" BallSize="30" StickRadius="10" RadiusScale="30" ForcefieldType="S" Charge="-2" TemperatureType="Isotropic" IsotropicTemperature="0.01266515" AnisotropicTemperature="0,0,0,0,0,0,0,0,0" Components="S"/>
+						<Bond ID="57" Mapping="263" Parent="2" Connects="7,29"/>
+						<Bond ID="116" Mapping="263" Parent="2" Connects="7,4"/>
+						<Bond ID="61" Mapping="263" Parent="2" Connects="11,29"/>
+						<Bond ID="118" Mapping="263" Parent="2" Connects="11,8"/>
+						<Bond ID="120" Mapping="263" Parent="2" Connects="15,12"/>
+						<Bond ID="101" Mapping="263" Parent="2" Connects="35,6"/>
+						<Bond ID="97" Mapping="263" Parent="2" Connects="32,6"/>
+						<Bond ID="40" Mapping="263" Parent="2" Connects="5,30"/>
+						<Bond ID="56" Mapping="263" Parent="2" Connects="5,28"/>
+						<Bond ID="86" Mapping="263" Parent="2" Connects="5,146"/>
+						<Bond ID="42" Mapping="263" Parent="2" Connects="9,34"/>
+						<Bond ID="47" Mapping="263" Parent="2" Connects="20,9"/>
+						<Bond ID="59" Mapping="263" Parent="2" Connects="9,28"/>
+						<Bond ID="90" Mapping="263" Parent="2" Connects="9,146"/>
+						<Bond ID="58" Mapping="263" Parent="2" Connects="9,31"/>
+						<Bond ID="89" Mapping="263" Parent="2" Connects="9,22"/>
+						<Bond ID="254" Mapping="263" Parent="2" Connects="9,219"/>
+						<Bond ID="44" Mapping="263" Parent="2" Connects="13,38"/>
+						<Bond ID="49" Mapping="263" Parent="2" Connects="24,13"/>
+						<Bond ID="62" Mapping="263" Parent="2" Connects="13,31"/>
+						<Bond ID="93" Mapping="263" Parent="2" Connects="13,22"/>
+						<Bond ID="63" Mapping="263" Parent="2" Connects="13,36"/>
+						<Bond ID="94" Mapping="263" Parent="2" Connects="13,26"/>
+						<Bond ID="119" Mapping="263" Parent="2" Connects="13,10"/>
+						<Bond ID="68" Mapping="263" Parent="2" Connects="20,4"/>
+						<Bond ID="99" Mapping="263" Parent="2" Connects="34,4"/>
+						<Bond ID="96" Mapping="263" Parent="2" Connects="30,4"/>
+						<Bond ID="71" Mapping="263" Parent="2" Connects="24,8"/>
+						<Bond ID="102" Mapping="263" Parent="2" Connects="38,8"/>
+						<Bond ID="67" Mapping="263" Parent="2" Connects="20,8"/>
+						<Bond ID="98" Mapping="263" Parent="2" Connects="34,8"/>
+						<Bond ID="75" Mapping="263" Parent="2" Connects="27,12"/>
+						<Bond ID="72" Mapping="263" Parent="2" Connects="24,12"/>
+						<Bond ID="103" Mapping="263" Parent="2" Connects="38,12"/>
+						<Bond ID="73" Mapping="263" Parent="2" Connects="25,10"/>
+						<Bond ID="104" Mapping="263" Parent="2" Connects="166,10"/>
+						<Bond ID="69" Mapping="263" Parent="2" Connects="21,10"/>
+						<Bond ID="100" Mapping="263" Parent="2" Connects="163,10"/>
+						<Bond ID="74" Mapping="263" Parent="2" Connects="25,14"/>
+						<Bond ID="105" Mapping="263" Parent="2" Connects="166,14"/>
+						<Bond ID="78" Mapping="263" Parent="2" Connects="32,16"/>
+						<Bond ID="131" Mapping="263" Parent="2" Connects="19,16"/>
+						<Bond ID="82" Mapping="263" Parent="2" Connects="35,18"/>
+						<Bond ID="77" Mapping="263" Parent="2" Connects="32,18"/>
+						<Bond ID="122" Mapping="263" Parent="2" Connects="21,18"/>
+						<Bond ID="85" Mapping="263" Parent="2" Connects="39,23"/>
+						<Bond ID="81" Mapping="263" Parent="2" Connects="35,23"/>
+						<Bond ID="124" Mapping="263" Parent="2" Connects="25,23"/>
+						<Bond ID="52" Mapping="263" Parent="2" Connects="34,20"/>
+						<Bond ID="108" Mapping="263" Parent="2" Connects="20,28"/>
+						<Bond ID="107" Mapping="263" Parent="2" Connects="20,31"/>
+						<Bond ID="121" Mapping="263" Parent="2" Connects="20,17"/>
+						<Bond ID="54" Mapping="263" Parent="2" Connects="38,24"/>
+						<Bond ID="111" Mapping="263" Parent="2" Connects="24,31"/>
+						<Bond ID="112" Mapping="263" Parent="2" Connects="24,36"/>
+						<Bond ID="115" Mapping="263" Parent="2" Connects="27,36"/>
+						<Bond ID="83" Mapping="263" Parent="2" Connects="38,22"/>
+						<Bond ID="79" Mapping="263" Parent="2" Connects="34,22"/>
+						<Bond ID="256" Mapping="263" Parent="2" Connects="153,22"/>
+						<Bond ID="84" Mapping="263" Parent="2" Connects="38,26"/>
+						<Bond ID="257" Mapping="263" Parent="2" Connects="156,26"/>
+						<Bond ID="51" Mapping="263" Parent="2" Connects="161,19"/>
+						<Bond ID="246" Mapping="263" Parent="2" Connects="19,219"/>
+						<Bond ID="53" Mapping="263" Parent="2" Connects="163,21"/>
+						<Bond ID="247" Mapping="263" Parent="2" Connects="21,219"/>
+						<Bond ID="55" Mapping="263" Parent="2" Connects="166,25"/>
+						<Bond ID="126" Mapping="263" Parent="2" Connects="32,28"/>
+						<Bond ID="128" Mapping="263" Parent="2" Connects="35,31"/>
+						<Bond ID="130" Mapping="263" Parent="2" Connects="39,36"/>
+						<Bond ID="248" Mapping="263" Parent="2" Connects="30,146"/>
+						<Bond ID="249" Mapping="263" Parent="2" Connects="34,146"/>
+						<Bond ID="258" Mapping="263" Parent="2" Connects="34,158"/>
+						<Bond ID="129" Mapping="263" Parent="2" Connects="38,33"/>
+						<Bond ID="241" Mapping="263" Parent="2" Connects="144,33"/>
+						<Bond ID="239" Mapping="263" Parent="2" Connects="140,33"/>
+						<Bond ID="242" Mapping="263" Parent="2" Connects="144,37"/>
+						<Bond ID="238" Mapping="263" Parent="2" Connects="136,158"/>
+						<Bond ID="215" Mapping="263" Parent="2" Connects="136,134"/>
+						<Bond ID="240" Mapping="263" Parent="2" Connects="140,158"/>
+						<Bond ID="216" Mapping="263" Parent="2" Connects="140,137"/>
+						<Bond ID="245" Mapping="263" Parent="2" Connects="144,141"/>
+						<Bond ID="252" Mapping="263" Parent="2" Connects="163,219"/>
+						<Bond ID="251" Mapping="263" Parent="2" Connects="161,219"/>
+						<Bond ID="167" Mapping="263" Parent="2" Connects="135,159"/>
+						<Bond ID="179" Mapping="263" Parent="2" Connects="135,157"/>
+						<Bond ID="169" Mapping="263" Parent="2" Connects="138,162"/>
+						<Bond ID="172" Mapping="263" Parent="2" Connects="149,138"/>
+						<Bond ID="181" Mapping="263" Parent="2" Connects="138,157"/>
+						<Bond ID="180" Mapping="263" Parent="2" Connects="138,160"/>
+						<Bond ID="197" Mapping="263" Parent="2" Connects="138,151"/>
+						<Bond ID="171" Mapping="263" Parent="2" Connects="142,165"/>
+						<Bond ID="173" Mapping="263" Parent="2" Connects="153,142"/>
+						<Bond ID="182" Mapping="263" Parent="2" Connects="142,160"/>
+						<Bond ID="201" Mapping="263" Parent="2" Connects="142,151"/>
+						<Bond ID="183" Mapping="263" Parent="2" Connects="142,164"/>
+						<Bond ID="202" Mapping="263" Parent="2" Connects="142,155"/>
+						<Bond ID="217" Mapping="263" Parent="2" Connects="142,139"/>
+						<Bond ID="185" Mapping="263" Parent="2" Connects="149,134"/>
+						<Bond ID="205" Mapping="263" Parent="2" Connects="162,134"/>
+						<Bond ID="203" Mapping="263" Parent="2" Connects="159,134"/>
+						<Bond ID="187" Mapping="263" Parent="2" Connects="153,137"/>
+						<Bond ID="207" Mapping="263" Parent="2" Connects="165,137"/>
+						<Bond ID="184" Mapping="263" Parent="2" Connects="149,137"/>
+						<Bond ID="204" Mapping="263" Parent="2" Connects="162,137"/>
+						<Bond ID="243" Mapping="263" Parent="2" Connects="156,141"/>
+						<Bond ID="188" Mapping="263" Parent="2" Connects="153,141"/>
+						<Bond ID="208" Mapping="263" Parent="2" Connects="165,141"/>
+						<Bond ID="189" Mapping="263" Parent="2" Connects="154,139"/>
+						<Bond ID="186" Mapping="263" Parent="2" Connects="150,139"/>
+						<Bond ID="190" Mapping="263" Parent="2" Connects="154,143"/>
+						<Bond ID="221" Mapping="263" Parent="2" Connects="161,145"/>
+						<Bond ID="233" Mapping="263" Parent="2" Connects="148,145"/>
+						<Bond ID="223" Mapping="263" Parent="2" Connects="163,147"/>
+						<Bond ID="220" Mapping="263" Parent="2" Connects="161,147"/>
+						<Bond ID="229" Mapping="263" Parent="2" Connects="150,147"/>
+						<Bond ID="250" Mapping="263" Parent="2" Connects="166,152"/>
+						<Bond ID="222" Mapping="263" Parent="2" Connects="163,152"/>
+						<Bond ID="230" Mapping="263" Parent="2" Connects="154,152"/>
+						<Bond ID="175" Mapping="263" Parent="2" Connects="162,149"/>
+						<Bond ID="212" Mapping="263" Parent="2" Connects="149,157"/>
+						<Bond ID="211" Mapping="263" Parent="2" Connects="149,160"/>
+						<Bond ID="255" Mapping="263" Parent="2" Connects="149,146"/>
+						<Bond ID="177" Mapping="263" Parent="2" Connects="165,153"/>
+						<Bond ID="213" Mapping="263" Parent="2" Connects="153,160"/>
+						<Bond ID="214" Mapping="263" Parent="2" Connects="153,164"/>
+						<Bond ID="253" Mapping="263" Parent="2" Connects="156,164"/>
+						<Bond ID="192" Mapping="263" Parent="2" Connects="165,151"/>
+						<Bond ID="191" Mapping="263" Parent="2" Connects="162,151"/>
+						<Bond ID="193" Mapping="263" Parent="2" Connects="165,155"/>
+						<Bond ID="231" Mapping="263" Parent="2" Connects="161,157"/>
+						<Bond ID="232" Mapping="263" Parent="2" Connects="163,160"/>
+						<Bond ID="259" Mapping="263" Parent="2" Connects="166,164"/>
+						<Bond ID="218" Mapping="263" Parent="2" Connects="165,132"/>
+						<Bond ID="41" Mapping="263" Parent="2" Connects="7,316"/>
+						<Bond ID="46" Mapping="263" Parent="2" Connects="317,7"/>
+						<Bond ID="88" Mapping="263" Parent="2" Connects="7,318"/>
+						<Bond ID="87" Mapping="263" Parent="2" Connects="7,319"/>
+						<Bond ID="43" Mapping="263" Parent="2" Connects="11,320"/>
+						<Bond ID="48" Mapping="263" Parent="2" Connects="321,11"/>
+						<Bond ID="92" Mapping="263" Parent="2" Connects="11,319"/>
+						<Bond ID="60" Mapping="263" Parent="2" Connects="11,322"/>
+						<Bond ID="91" Mapping="263" Parent="2" Connects="11,323"/>
+						<Bond ID="45" Mapping="263" Parent="2" Connects="15,324"/>
+						<Bond ID="50" Mapping="263" Parent="2" Connects="325,15"/>
+						<Bond ID="64" Mapping="263" Parent="2" Connects="15,322"/>
+						<Bond ID="95" Mapping="263" Parent="2" Connects="15,323"/>
+						<Bond ID="65" Mapping="263" Parent="2" Connects="15,326"/>
+						<Bond ID="70" Mapping="263" Parent="2" Connects="327,6"/>
+						<Bond ID="66" Mapping="263" Parent="2" Connects="328,6"/>
+						<Bond ID="117" Mapping="263" Parent="2" Connects="329,6"/>
+						<Bond ID="123" Mapping="263" Parent="2" Connects="24,330"/>
+						<Bond ID="125" Mapping="263" Parent="2" Connects="27,331"/>
+						<Bond ID="235" Mapping="263" Parent="2" Connects="19,332"/>
+						<Bond ID="106" Mapping="263" Parent="2" Connects="19,333"/>
+						<Bond ID="236" Mapping="263" Parent="2" Connects="21,334"/>
+						<Bond ID="110" Mapping="263" Parent="2" Connects="21,333"/>
+						<Bond ID="109" Mapping="263" Parent="2" Connects="21,335"/>
+						<Bond ID="237" Mapping="263" Parent="2" Connects="25,336"/>
+						<Bond ID="113" Mapping="263" Parent="2" Connects="25,335"/>
+						<Bond ID="114" Mapping="263" Parent="2" Connects="25,337"/>
+						<Bond ID="80" Mapping="263" Parent="2" Connects="338,17"/>
+						<Bond ID="198" Mapping="263" Parent="2" Connects="329,17"/>
+						<Bond ID="76" Mapping="263" Parent="2" Connects="339,17"/>
+						<Bond ID="194" Mapping="263" Parent="2" Connects="340,17"/>
+						<Bond ID="174" Mapping="263" Parent="2" Connects="32,328"/>
+						<Bond ID="176" Mapping="263" Parent="2" Connects="35,327"/>
+						<Bond ID="206" Mapping="263" Parent="2" Connects="35,341"/>
+						<Bond ID="178" Mapping="263" Parent="2" Connects="39,342"/>
+						<Bond ID="209" Mapping="263" Parent="2" Connects="39,341"/>
+						<Bond ID="210" Mapping="263" Parent="2" Connects="39,343"/>
+						<Bond ID="226" Mapping="263" Parent="2" Connects="321,29"/>
+						<Bond ID="224" Mapping="263" Parent="2" Connects="317,29"/>
+						<Bond ID="127" Mapping="263" Parent="2" Connects="338,29"/>
+						<Bond ID="168" Mapping="263" Parent="2" Connects="136,344"/>
+						<Bond ID="196" Mapping="263" Parent="2" Connects="136,345"/>
+						<Bond ID="195" Mapping="263" Parent="2" Connects="136,346"/>
+						<Bond ID="170" Mapping="263" Parent="2" Connects="140,347"/>
+						<Bond ID="200" Mapping="263" Parent="2" Connects="140,346"/>
+						<Bond ID="199" Mapping="263" Parent="2" Connects="140,348"/>
+						<Bond ID="234" Mapping="263" Parent="2" Connects="144,349"/>
+						<Bond ID="244" Mapping="263" Parent="2" Connects="144,348"/>
+						<Bond ID="225" Mapping="263" Parent="2" Connects="150,350"/>
+						<Bond ID="227" Mapping="263" Parent="2" Connects="154,350"/>
+						<Bond ID="228" Mapping="263" Parent="2" Connects="154,351"/>
+						<SpaceGroup ID="260" Parent="2" Children="264" Name="P1" DisplayStyle="Solid" XYZ="-1.20231049970988,-1.03813442351146,-9.07238294533145" AVector="8.29514638786291,-4.789205,-1.02931614826573e-014" BVector="5.53009775671836,9.57841028545886,-2.09285339570522" CVector="1.7681233725818,3.06247951536167,18.6881606067223" Color="255,255,255,255" OrientationBase="C along Z, B in YZ plane" Centering="3D Primitive-Centered" Lattice="3D Triclinic" GroupName="P1" Operators="1,0,0,0,0,1,0,0,0,0,1,0" DisplayRange="0,1,0,1,0,1" LineThickness="2" CylinderRadius="0.2" LabelAxes="1" ActiveSystem="2" ITNumber="1" LongName="P 1" Qualifier="Origin-1" SchoenfliesName="C1-1" System="Triclinic" Class="1"/>
+						<ReciprocalLattice3D ID="264" Parent="260" XYZ="-1.20231049970988,-1.03813442351146,-9.07238294533145" Visible="0"/>
+					</IdentityMapping>
+					<ImageMapping ID="352" Element="1,0,0,-2,0,1,0,-2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="353" Element="1,0,0,-1,0,1,0,-2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="354" Element="1,0,0,0,0,1,0,-2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="355" Element="1,0,0,1,0,1,0,-2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="356" Element="1,0,0,-2,0,1,0,-1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="357" Element="1,0,0,-1,0,1,0,-1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="358" Element="1,0,0,0,0,1,0,-1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(72):40x0,340,329,4x0,341,343,6x0,2+330,328,327,342,5x0,339,338,4x0,322,326" NumImages="13">
+						<Atom3d ID="340" Mapping="358" ImageOf="135" Visible="0"/>
+						<Atom3d ID="329" Mapping="358" ImageOf="138" Visible="0"/>
+						<Atom3d ID="341" Mapping="358" ImageOf="139" Visible="0"/>
+						<Atom3d ID="343" Mapping="358" ImageOf="143" Visible="0"/>
+						<Atom3d ID="330" Mapping="358" ImageOf="151" Visible="0"/>
+						<Atom3d ID="331" Mapping="358" ImageOf="155" Visible="0"/>
+						<Atom3d ID="328" Mapping="358" ImageOf="148" Visible="0"/>
+						<Atom3d ID="327" Mapping="358" ImageOf="150" Visible="0"/>
+						<Atom3d ID="342" Mapping="358" ImageOf="154" Visible="0"/>
+						<Atom3d ID="339" Mapping="358" ImageOf="159" Visible="0"/>
+						<Atom3d ID="338" Mapping="358" ImageOf="162" Visible="0"/>
+						<Atom3d ID="322" Mapping="358" ImageOf="132" Visible="0"/>
+						<Atom3d ID="326" Mapping="358" ImageOf="133" Visible="0"/>
+					</ImageMapping>
+					<ImageMapping ID="359" Element="1,0,0,1,0,1,0,-1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(59):56x0,317,321,325" NumImages="3">
+						<Atom3d ID="317" Mapping="359" ImageOf="148" Visible="0"/>
+						<Atom3d ID="321" Mapping="359" ImageOf="150" Visible="0"/>
+						<Atom3d ID="325" Mapping="359" ImageOf="154" Visible="0"/>
+					</ImageMapping>
+					<ImageMapping ID="360" Element="1,0,0,2,0,1,0,-1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="361" Element="1,0,0,-3,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="362" Element="1,0,0,-2,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="363" Element="1,0,0,-1,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(253):34x0,335,337,332,334,336,24x0,333,6x0,2+350,133x0,270,0,265,267,271,0,266,0,269,272,2x0,268,27x0,302,285,287,303,286,289,304,288" NumImages="24">
+						<Atom3d ID="335" Mapping="363" ImageOf="33" Visible="0"/>
+						<Atom3d ID="337" Mapping="363" ImageOf="37" Visible="0"/>
+						<Atom3d ID="332" Mapping="363" ImageOf="136" Visible="0"/>
+						<Atom3d ID="334" Mapping="363" ImageOf="140" Visible="0"/>
+						<Atom3d ID="336" Mapping="363" ImageOf="144" Visible="0"/>
+						<Atom3d ID="333" Mapping="363" ImageOf="158" Visible="0"/>
+						<Atom3d ID="350" Mapping="363" ImageOf="132" Visible="0"/>
+						<Atom3d ID="351" Mapping="363" ImageOf="133" Visible="0"/>
+						<Bond ID="270" Mapping="363" ImageOf="41"/>
+						<Bond ID="265" Mapping="363" ImageOf="88"/>
+						<Bond ID="267" Mapping="363" ImageOf="87"/>
+						<Bond ID="271" Mapping="363" ImageOf="43"/>
+						<Bond ID="266" Mapping="363" ImageOf="92"/>
+						<Bond ID="269" Mapping="363" ImageOf="91"/>
+						<Bond ID="272" Mapping="363" ImageOf="45"/>
+						<Bond ID="268" Mapping="363" ImageOf="95"/>
+						<Bond ID="302" Mapping="363" ImageOf="168"/>
+						<Bond ID="285" Mapping="363" ImageOf="196"/>
+						<Bond ID="287" Mapping="363" ImageOf="195"/>
+						<Bond ID="303" Mapping="363" ImageOf="170"/>
+						<Bond ID="286" Mapping="363" ImageOf="200"/>
+						<Bond ID="289" Mapping="363" ImageOf="199"/>
+						<Bond ID="304" Mapping="363" ImageOf="234"/>
+						<Bond ID="288" Mapping="363" ImageOf="244"/>
+					</ImageMapping>
+					<ImageMapping ID="364" Element="1,0,0,1,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(256):12x0,2+318,323,9x0,316,320,324,21x0,2+345,348,9x0,344,347,349,161x0,276,306,277,305,274,278,273,275,21x0,313,311,315" NumImages="23">
+						<Atom3d ID="318" Mapping="364" ImageOf="16" Visible="0"/>
+						<Atom3d ID="319" Mapping="364" ImageOf="18" Visible="0"/>
+						<Atom3d ID="323" Mapping="364" ImageOf="23" Visible="0"/>
+						<Atom3d ID="316" Mapping="364" ImageOf="32" Visible="0"/>
+						<Atom3d ID="320" Mapping="364" ImageOf="35" Visible="0"/>
+						<Atom3d ID="324" Mapping="364" ImageOf="39" Visible="0"/>
+						<Atom3d ID="345" Mapping="364" ImageOf="145" Visible="0"/>
+						<Atom3d ID="346" Mapping="364" ImageOf="147" Visible="0"/>
+						<Atom3d ID="348" Mapping="364" ImageOf="152" Visible="0"/>
+						<Atom3d ID="344" Mapping="364" ImageOf="161" Visible="0"/>
+						<Atom3d ID="347" Mapping="364" ImageOf="163" Visible="0"/>
+						<Atom3d ID="349" Mapping="364" ImageOf="166" Visible="0"/>
+						<Bond ID="276" Mapping="364" ImageOf="235"/>
+						<Bond ID="306" Mapping="364" ImageOf="106"/>
+						<Bond ID="277" Mapping="364" ImageOf="236"/>
+						<Bond ID="305" Mapping="364" ImageOf="110"/>
+						<Bond ID="274" Mapping="364" ImageOf="109"/>
+						<Bond ID="278" Mapping="364" ImageOf="237"/>
+						<Bond ID="273" Mapping="364" ImageOf="113"/>
+						<Bond ID="275" Mapping="364" ImageOf="114"/>
+						<Bond ID="313" Mapping="364" ImageOf="225"/>
+						<Bond ID="311" Mapping="364" ImageOf="227"/>
+						<Bond ID="315" Mapping="364" ImageOf="228"/>
+					</ImageMapping>
+					<ImageMapping ID="365" Element="1,0,0,2,0,1,0,0,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="366" Element="1,0,0,-3,0,1,0,1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="367" Element="1,0,0,-2,0,1,0,1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="368" Element="1,0,0,-1,0,1,0,1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(244):206x0,292,3x0,296,4x0,300,26x0,299,295" NumImages="5">
+						<Bond ID="292" Mapping="368" ImageOf="46"/>
+						<Bond ID="296" Mapping="368" ImageOf="48"/>
+						<Bond ID="300" Mapping="368" ImageOf="50"/>
+						<Bond ID="299" Mapping="368" ImageOf="226"/>
+						<Bond ID="295" Mapping="368" ImageOf="224"/>
+					</ImageMapping>
+					<ImageMapping ID="369" Element="1,0,0,0,0,1,0,1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="ci(245):212x0,312,3x0,310,0,314,298,294,281,2+290,8x0,308,280,307,279,293,297,283,301,282,284,2x0,309" NumImages="19">
+						<Bond ID="312" Mapping="369" ImageOf="60"/>
+						<Bond ID="310" Mapping="369" ImageOf="64"/>
+						<Bond ID="314" Mapping="369" ImageOf="65"/>
+						<Bond ID="298" Mapping="369" ImageOf="70"/>
+						<Bond ID="294" Mapping="369" ImageOf="66"/>
+						<Bond ID="281" Mapping="369" ImageOf="117"/>
+						<Bond ID="290" Mapping="369" ImageOf="123"/>
+						<Bond ID="291" Mapping="369" ImageOf="125"/>
+						<Bond ID="308" Mapping="369" ImageOf="80"/>
+						<Bond ID="280" Mapping="369" ImageOf="198"/>
+						<Bond ID="307" Mapping="369" ImageOf="76"/>
+						<Bond ID="279" Mapping="369" ImageOf="194"/>
+						<Bond ID="293" Mapping="369" ImageOf="174"/>
+						<Bond ID="297" Mapping="369" ImageOf="176"/>
+						<Bond ID="283" Mapping="369" ImageOf="206"/>
+						<Bond ID="301" Mapping="369" ImageOf="178"/>
+						<Bond ID="282" Mapping="369" ImageOf="209"/>
+						<Bond ID="284" Mapping="369" ImageOf="210"/>
+						<Bond ID="309" Mapping="369" ImageOf="127"/>
+					</ImageMapping>
+					<ImageMapping ID="370" Element="1,0,0,1,0,1,0,1,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="371" Element="1,0,0,-2,0,1,0,2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="372" Element="1,0,0,-1,0,1,0,2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<ImageMapping ID="373" Element="1,0,0,0,0,1,0,2,0,0,1,0" Constraint="1,0,0,0,0,1,0,0,0,0,1,0"/>
+					<MappingRepairs NumRepairs="0"/>
+				</MappingFamily>
+				<InfiniteMapping ID="3" Element="1,0,0,0,0,1,0,0,0,0,1,0" MappedObjects="2"/>
+			</MappingSet>
+		</SymmetrySystem>
+	</AtomisticTreeRoot>
+</XSD>
